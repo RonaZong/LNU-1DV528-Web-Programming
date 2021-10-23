@@ -1,0 +1,182 @@
+/**
+ * Xingrong A01
+ */
+
+ html {
+   background-color: #F0DAB4;
+   background-image: url("../img/background.ico");
+   width: 100%;
+   height: 100%;
+   background-position: center;
+   background-repeat: repeat;
+   background-size: cover;
+ }
+
+ * {
+   box-sizing: border-box;
+ }
+
+ header, body{
+   margin: 8px auto;
+   width: 1000px;
+   color: #663300;
+ }
+
+ @media screen and (max-width: 1000px) {
+   header, body{
+     margin: 8px auto;
+     width: auto;
+     color: #663300;
+   }
+ }
+
+ .siteheader {
+   font-family: fantasy;
+ }
+
+ .siteheader img {
+   width: 80px;
+   border: 5px solid #FFF;
+   float: right;
+ }
+
+ .navbar {
+   padding: 1em;
+   border-top: 3px solid #FFF;
+ }
+
+ .navbar a {
+   display: inline-block;
+   padding: 1em 1em;
+   color: #8E6011;
+   text-decoration: none;
+   font-family: cursive;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .navbar a {
+      display: inline-block;
+      padding: 1em 1em;
+      width: 100%;
+      color: #8E6011;
+      text-decoration: none;
+      font-family: cursive;
+     }
+  }
+
+  .navbar a:hover {
+    background-color: #eee;
+    text-decoration: underline;
+  }
+
+  .flash {
+    padding: 1em;
+    border: 2px solid #8E6011;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 30%;
+  }
+
+  .flash img{
+    border: 3px solid #FFF;
+  }
+
+  main {
+    padding: 1em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: auto;
+    background-image: url("../img/background-image.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #FFF;
+  }
+
+  .article h1 {
+    font-size: 1.5em;
+    font-family: sans-serif;
+  }
+
+  .article figure img {
+    border: 3px solid #FFF;
+  }
+
+  .articlefooter {
+    border: 2px solid #8E6011;
+  }
+
+  .articlefooter img {
+    width: 60px;
+    border: 5px solid #FFF;
+  }
+
+  .sitefooter {
+    padding: 1em;
+    font-family: monospace;
+  }
+
+  .sitefooter a {
+    color: #663300;
+  }
+
+  form {
+    font-family: monospace;
+  }
+
+  table {
+    color: #FFF;
+  }
+
+  table tr:nth-child(2n){
+    background-color: #999;
+  }
+
+  aside {
+    color: #FFF;
+  }
+
+  .column1{
+    padding: 1em;
+    float: left;
+    width: 25%;
+  }
+
+  .column2 {
+    padding: 1em;
+    float: right;
+    width: 25%;
+  }
+
+  .column3 {
+    padding: 1em;
+    float: right;
+    width: 50%;
+  }
+
+  .Triptych {
+    margin-bottom: 20px;
+  }
+
+  .Reference {
+    padding: 2em;
+    float: left;
+    width: 33%;
+  }
+
+  .Validator {
+    padding: 2em;
+    float: right;
+    width: 33%;
+  }
+
+  .Standard {
+    padding: 2em;
+    float: right;
+    width: 33%;
+  }
+
+  li a {
+    color: #FFF;
+  }
