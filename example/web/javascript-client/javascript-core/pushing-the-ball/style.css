@@ -1,0 +1,7 @@
+#flash {
+  margin: 0 auto;
+  padding: 2em;
+  min-height: 20em;
+  max-width: 800px;
+  border: 2px solid #ccc;
+}

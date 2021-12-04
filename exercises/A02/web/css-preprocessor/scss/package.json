@@ -1,0 +1,19 @@
+{
+  "name": "compile-scss",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Example program to test the SCSS compiler.",
+  "scripts": {
+    "build": "npm run build-css | npm run build-min",
+    "build-css": "node_modules/.bin/sass style.scss style.css",
+    "build-min": "node_modules/.bin/sass --clean-css style.scss style.min.css",
+    "clean": "rm -f style.css style.min.css",
+    "clean-all": "npm run clean | rm -rf node_modules package-lock.json",
+    "test": "node_modules/.bin/sass --lint style.scss"
+  },
+  "author": "Mikael Roos, mos@dbwebb.se",
+  "license": "MIT",
+  "dependencies": {
+    "sass": "^1.39.0"
+  }
+}

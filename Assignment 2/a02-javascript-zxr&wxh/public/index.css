@@ -1,0 +1,70 @@
+/**
+ * Xingrong A02
+ */
+
+ html {
+   background-color: #F0DAB4;
+   width: 100%;
+   height: 100%;
+   background-position: center;
+   background-repeat: repeat;
+   background-size: cover;
+ }
+
+ @media screen and (max-width: 1000px) {
+   header, body{
+     margin: 8px auto;
+     width: auto;
+     color: #663300;
+   }
+ }
+
+img {
+  display: block;
+  margin: auto;
+  height: 128px;
+  width: 128px;
+  padding: 1rem;
+}
+
+canvas {
+  display: block;
+  margin: 0rem auto;
+  width: 540px;
+  height: 0px;
+}
+
+div {
+  padding: 2em;
+}
+
+.navbar {
+  padding: 1em 1em;
+  border-top: 2px solid #FFF;
+}
+
+a {
+  display: inline-block;
+  padding: 1em 1em;
+  font-size: 12px;
+  color: #8E6011;
+  text-decoration: none;
+  font-family: cursive;
+ }
+
+ @media screen and (max-width: 1000px) {
+   a {
+     display: inline-block;
+     padding: 1em 1em;
+     font-size: 12px;
+     /* width: 100%; */
+     color: #8E6011;
+     text-decoration: none;
+     font-family: cursive;
+    }
+ }
+
+a:hover {
+  background-color: #eee;
+  text-decoration: underline;
+}

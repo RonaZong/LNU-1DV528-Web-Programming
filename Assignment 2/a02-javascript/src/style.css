@@ -1,0 +1,83 @@
+/**
+ * Xingrong A02
+ */
+
+ html {
+   background-color: #F0DAB4;
+   background-image: url("../img/background.ico");
+   width: 100%;
+   height: 100%;
+   background-position: center;
+   background-repeat: repeat;
+   background-size: cover;
+ }
+
+ * {
+   box-sizing: border-box;
+ }
+
+ header, body{
+   margin: 8px auto;
+   width: 1000px;
+   color: #663300;
+ }
+
+ @media screen and (max-width: 1000px) {
+   header, body{
+     margin: 8px auto;
+     width: auto;
+     color: #663300;
+   }
+ }
+
+ .siteheader {
+   font-family: fantasy;
+ }
+
+ .siteheader img {
+   width: 80px;
+   border: 5px solid #FFF;
+   float: right;
+ }
+
+ .navbar {
+   padding: 1em;
+   border-top: 3px solid #FFF;
+ }
+
+ .navbar a {
+   display: inline-block;
+   padding: 1em 1em;
+   color: #8E6011;
+   text-decoration: none;
+   font-family: cursive;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .navbar a {
+      display: inline-block;
+      padding: 1em 1em;
+      width: 100%;
+      color: #8E6011;
+      text-decoration: none;
+      font-family: cursive;
+     }
+  }
+
+  .navbar a:hover {
+    background-color: #eee;
+    text-decoration: underline;
+  }
+
+  main {
+    padding: 1em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: auto;
+    background-image: url("../img/background-image.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #FFF;
+  }

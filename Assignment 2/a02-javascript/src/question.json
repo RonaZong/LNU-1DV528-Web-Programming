@@ -1,0 +1,38 @@
+{
+  "questions"
+  {
+    "id": 1,
+    "question": "What is 1+1?",
+    "limit": "5",
+    "nextURL": "https://courselab.lnu.se/quiz/answer/1",
+    "message": "You got your question! Now send me the answer via HTTP POST to the nextURL in JSON-format"
+  }
+  {
+    "id": 2,
+    "question": "What is 2+2?",
+    "limit": "5",
+    "nextURL": "https://courselab.lnu.se/quiz/answer/2",
+    "message": "You got your question! Now send me the answer via HTTP POST to the nextURL in JSON-format"
+  }
+  {
+    "id": 3,
+    "question": "What is 3+3?",
+    "limit": "5",
+    "nextURL": "https://courselab.lnu.se/quiz/answer/3",
+    "message": "You got your question! Now send me the answer via HTTP POST to the nextURL in JSON-format"
+  }
+  {
+    "id": 4,
+    "question": "What is 4+4?",
+    "limit": "5",
+    "nextURL": "https://courselab.lnu.se/quiz/answer/4",
+    "message": "You got your question! Now send me the answer via HTTP POST to the nextURL in JSON-format"
+  }
+  {
+    "id": 5,
+    "question": "What is 5+5?",
+    "limit": "5",
+    "nextURL": "https://courselab.lnu.se/quiz/answer/5",
+    "message": "You got your question! Now send me the answer via HTTP POST to the nextURL in JSON-format"
+  }
+}

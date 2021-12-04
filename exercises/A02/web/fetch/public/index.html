@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Web site created using create-snowpack-app" />
+    <link rel="stylesheet" type="text/css" href="/index.css" />
+    <title>Snowpack App</title>
+  </head>
+  <body>
+      <p>The REM server:
+          <a href="#" id="linkA"</a>A</a> |
+          <a href="#" id="linkB"</a>B</a> |
+          <a href="#" id="linkC"</a>C</a> |
+      </p>
+      <p><input type="text" value="1" id="userId"></p>
+
+      <p>The Quizz server:
+          <a href="#" id="linkD"</a>Get first quizz</a> |
+          <a href="#" id="linkE"</a>Reply with response to quizz</a> |
+          <a href="#" id="linkF"</a>Get next quizz</a> |
+      </p>
+      <p>Response: <input type="text" id="answer"></p>
+
+      <p>Here comes the response from the request:</p>
+      <div id="content"></div>
+
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <script type="module" src="/_dist_/index.js"></script>
+  </body>
+</html>

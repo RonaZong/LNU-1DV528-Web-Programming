@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<!-- saved from url=(0078)https://rawgit.com/CS-LNU-Learning-Objects/css/master/lectures/01/index.html#/ -->
+<html lang="sv-se" class="lnu-intro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Lecture - CSS</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="icon" href="https://rawgit.com/CS-LNU-Learning-Objects/css/master/lectures/images/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="./2.Lecture - CSS_files/reveal.css">
+    <link rel="stylesheet" href="./2.Lecture - CSS_files/black.css" id="theme">
+    <link rel="stylesheet" href="./2.Lecture - CSS_files/black.lnu.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="./2.Lecture - CSS_files/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script><link rel="stylesheet" type="text/css" href="./2.Lecture - CSS_files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+
+<body style="transition: -webkit-transform 0.8s ease 0s;">
+
+    <div class="reveal lnu slide" role="application" data-transition-speed="default" data-background-transition="fade">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides" style="width: 1280px; height: 800px; zoom: 0.675;">
+            <!-- Start -->
+            <section class="center present" data-state="lnu-intro" style="top: 156px; display: block;">
+                <h3>Introduction to web programming</h3>
+                <h3>(1DV525)</h3>
+                <h1>CSS</h1>
+                <div class="lnu-footer">
+                    <img src="./2.Lecture - CSS_files/lnu-logotype.png">
+                    <img src="./2.Lecture - CSS_files/lnu-symbol.png">
+                </div>
+            </section>
+
+            <!-- CC -->
+            <section data-state="lnu-cc" hidden="" aria-hidden="true" class="future" style="display: block;">
+                <h2>Licence for this work</h2>
+                <p>
+                    This work is produced by Johan Leitet for the course Introduction to web programming (1DV525) at Linnaeus University.
+                </p>
+                <p>All content in this work excluding photographs, icons, picture of course litterature and Linnaeus University logotype and symbol, is licensied under a
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="./2.Lecture - CSS_files/80x15.png"></a><br>Creative Commons Attribution 4.0 International License.</p>
+                <h4>You are free to </h4>
+                <ul>
+                    <li>copy and redistribute the material in any medium or format</li>
+                    <li>spread the whole or parts of the content</li>
+                    <li>show the whole or parts of the content publicly and digital</li>
+                    <li>convert the content to another format</li>
+                    <li>change the content</li>
+                </ul>
+                <p>
+                    If you change the content do not use the photographs, icons, picture of the course literature or Linnaeus University logotype and symbol in your new work!
+                </p>
+                <p>
+                    At all times you must give credit to: ”Linnaeus university – Introduction to Web Programming (1DV525)” with the link https://coursepress.lnu.se/kurs/introduction-to-web-programming/ and to the Creative Common-license above.
+                </p>
+            </section>
+
+            <!-- Content -->
+            <section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="future" style="display: block;"><h2 id="content">Content</h2>
+<ul>
+<li>Adding styles to our pages</li>
+<li>Syntax</li>
+<li>Selectors</li>
+<li>Specificity</li>
+<li>Readable CSS</li>
+<li>Media queries</li>
+<li>CSS frameworks</li>
+<li>CSS preprocessors</li>
+</ul>
+</section>
+
+        <!-- The Web as an platform -->
+        <section hidden="" aria-hidden="true" class="stack future" style="display: none;">
+             <!-- Information carry -> Applications -->
+
+             <!-- Client / Server -->
+            <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="from-this-">From this...</h2>
+<p><img src="./2.Lecture - CSS_files/unstyled.png" alt=""></p>
+</section>
+
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="-to-this-">...to this!</h2>
+<p><img src="./2.Lecture - CSS_files/styled.png" alt=""></p>
+</section>
+
+        </section>
+
+        <!-- Styles on our page -->
+        <section hidden="" aria-hidden="true" class="stack future" style="display: none;">
+             <!-- Styles on our page -->
+             <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="styles-on-our-pages">Styles on our pages</h2>
+<ul>
+<li>Built in stylesheet (The Browser)</li>
+<li>User specific settings</li>
+<li>Developer stylesheets<ul>
+<li>Inline stylesheets</li>
+<li>Embedded stylesheets</li>
+<li>External stylesheets</li>
+</ul>
+</li>
+</ul>
+</section>
+
+             <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="adding-stylesheets">Adding stylesheets</h2>
+<p>Inline stylesheets</p>
+<pre><code class="lang-HTML hljs ruby">&lt;p style=<span class="hljs-string">"color:#6C9; text-align:center"</span>&gt;
+  <span class="hljs-constant">Centered</span>, blueish
+<span class="hljs-prompt">&lt;/p&gt;</span>
+</code></pre>
+<p>Embedded stylesheets</p>
+<pre><code class="lang-HTML hljs r">&lt;head&gt;
+  <span class="hljs-keyword">...</span>
+  &lt;style type=<span class="hljs-string">"text/css"</span>&gt;
+    p { color: red; }
+  &lt;/style&gt;
+  <span class="hljs-keyword">...</span>
+&lt;/head&gt;
+</code></pre>
+<p>External stylesheets</p>
+<pre><code class="lang-HTML hljs r">&lt;head&gt;
+  <span class="hljs-keyword">...</span>
+  &lt;title&gt;Page with style&lt;/title&gt;
+  &lt;link rel=<span class="hljs-string">"stylesheet"</span> href=<span class="hljs-string">"mystyle.css"</span> /&gt;
+  <span class="hljs-keyword">...</span>
+&lt;/head&gt;
+</code></pre>
+</section>
+
+         </section>
+
+         <!-- Syntax -->
+         <section hidden="" aria-hidden="true" class="stack future" style="display: none;">
+
+              <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="syntax">Syntax</h2>
+<p>CSS Rules</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">selector</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+
+<span class="hljs-tag">selector</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Example</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">h1</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#CDF</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#9FF</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p><em>Get all <strong>h1</strong>-element and change the <strong>color</strong> to #CDF and <strong>background-color</strong> to #9FF</em></p>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="selectors">Selectors</h2>
+<p>CSS Rules</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">selector</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<ul>
+<li>tag selector (type selector)</li>
+<li>class selector</li>
+<li>id selector</li>
+<li>attribute selectors</li>
+<li>pseudo-classes selectors</li>
+</ul>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_Started/Selectors">https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_Started/Selectors</a></p>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="tag-selectors-type-selectors-">Tag selectors (type selectors)</h2>
+<p>Single selector</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">h1</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<p>An em element that is a descendant of an h1 element</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">h1</span> <span class="hljs-tag">em</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Example:</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">p</span> <span class="hljs-tag">em</span> <span class="hljs-tag">strong</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+   This is an <span class="hljs-tag">&lt;<span class="hljs-title">em</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>example<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>.
+   Another <span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span>.
+ <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</code></pre>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="class-selectors">Class selectors</h2>
+<p>Single selector</p>
+<pre><code class="lang-css hljs "><span class="hljs-class">.avatar</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"avatar"</span>&gt;</span> Selected <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+ ...
+ <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"avatar"</span>&gt;</span> Selected <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+ ...
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"active avatar"</span>&gt;</span> Selected <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ ...
+ <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span> Not selected <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</code></pre>
+<p>Combined selector</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">p</span><span class="hljs-class">.avatar</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"avatar"</span>&gt;</span> Selected <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+ ...
+ <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"avatar"</span>&gt;</span> Selected <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+ ...
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"active avatar"</span>&gt;</span> Not selected <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+ ...
+ <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span> Not selected <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</code></pre>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="id-selectors">ID selectors</h2>
+<p>Single selector</p>
+<pre><code class="lang-css hljs "><span class="hljs-id">#content</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">property</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"content"</span>&gt;</span>
+   Selected
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+ <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+   Not selected
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<p>Important: The ID value (above "content") must be unique on the page!</p>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="attribute-selectors">Attribute selectors</h2>
+<p>All elements with the attribute disabled</p>
+<pre><code class="lang-css hljs "><span class="hljs-attr_selector">[disabled]</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<p>All <input type="button" value="&lt;input type=&#39;button&#39; /&gt;"></p>
+<pre><code class="lang-css hljs "><span class="hljs-attr_selector">[type='button']</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<p>All secure links</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">a</span><span class="hljs-attr_selector">[href^="https://"]</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>;<span class="hljs-rule">}</span></span>]
+</code></pre>
+<p>All .png-images</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">img</span><span class="hljs-attr_selector">[src$=".png"]</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>;<span class="hljs-rule">}</span></span>]
+</code></pre>
+<p>...</p>
+</section>
+
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="relationship-selectors">Relationship selectors</h2>
+<table>
+<thead>
+<tr>
+<th>Selector</th>
+<th>Selects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A  E</td>
+<td>E that is decendant of A</td>
+</tr>
+<tr>
+<td>A &gt; E</td>
+<td>E that is a child of A</td>
+</tr>
+<tr>
+<td>E:first-child</td>
+<td>E that is first child</td>
+</tr>
+<tr>
+<td>B + E</td>
+<td>E that is next sibling of B</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="grouping-selectors">Grouping selectors</h2>
+<pre><code class="lang-css hljs "><span class="hljs-tag">h1</span>,<span class="hljs-tag">h2</span>,<span class="hljs-tag">h3</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-css hljs "><span class="hljs-tag">p</span><span class="hljs-class">.red</span> <span class="hljs-tag">strong</span><span class="hljs-class">.hidden</span>, <span class="hljs-id">#content</span> <span class="hljs-tag">p</span><span class="hljs-pseudo">:first-line</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="pseudo-class-selectors">Pseudo class selectors</h2>
+<p>Hovering links</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">a</span><span class="hljs-pseudo">:link</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-tag">a</span><span class="hljs-pseudo">:visited</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-tag">a</span><span class="hljs-pseudo">:focus</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-tag">a</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-tag">a</span><span class="hljs-pseudo">:active</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Example</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">div</span> <span class="hljs-tag">p</span><span class="hljs-pseudo">:first-child</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">propery</span>:<span class="hljs-value"> value</span></span>;<span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>I am first child<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>I am first child as well!<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Poor me... :(<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>And me...<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="specificity">Specificity</h2>
+<p>Different selectors have higher specificity than others.</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">p</span><span class="hljs-id">#firstptag</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> yellow</span></span>; <span class="hljs-rule">}</span></span> <span class="hljs-comment">/* 101 */</span>
+
+<span class="hljs-tag">p</span><span class="hljs-class">.content</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> green</span></span>; <span class="hljs-rule">}</span></span>    <span class="hljs-comment">/* 11 */</span>
+
+<span class="hljs-tag">p</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> red</span></span>; <span class="hljs-rule">}</span></span>              <span class="hljs-comment">/* 1 */</span>
+
+<span class="hljs-tag">p</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> blue</span></span>; <span class="hljs-rule">}</span></span>             <span class="hljs-comment">/* 1 + last */</span>
+</code></pre>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="propery-inheritance">Propery inheritance</h2>
+<p>Some properties are inheritanced by decendents</p>
+<pre><code class="lang-css hljs "><span class="hljs-tag">p</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> red</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+   This text will be red. <span class="hljs-tag">&lt;<span class="hljs-title">em</span>&gt;</span>This text as well!<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</code></pre>
+<p>Not all properties are inherited. Refer to the spec.</p>
+</section>
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="reference-for-html-and-css">Reference for HTML and CSS</h2>
+<p><img src="./2.Lecture - CSS_files/mdn.png" alt="">
+<a href="https://developer.mozilla.org/">https://developer.mozilla.org</a></p>
+</section>
+        </section>
+
+        <section hidden="" aria-hidden="true" class="stack future" style="display: none;">
+
+              <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="readable-css">Readable CSS</h2>
+<pre><code class="lang-css hljs "><span class="hljs-id">#content</span> <span class="hljs-tag">p</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">1.1em</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#4D83A4</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">margin-left</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-css hljs "><span class="hljs-id">#content</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">1.6em</span></span></span>;
+<span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-tag">p</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#4D83A4</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">1.1em</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+     <span class="hljs-id">#content</span> <span class="hljs-tag">p</span><span class="hljs-pseudo">:first-letter</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">1.7em</span></span></span>;
+     <span class="hljs-rule">}</span></span>
+</code></pre>
+<pre><code class="lang-css hljs "><span class="hljs-id">#content</span>
+<span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size   </span>:<span class="hljs-value"> <span class="hljs-number">1.6em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">float       </span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin-right</span>:<span class="hljs-value"> left</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_Started/Readable_CSS">https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_Started/Readable_CSS</a></p>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="comments">Comments</h2>
+<p>Multiline comments</p>
+<pre><code class="lang-css hljs "><span class="hljs-comment">/*  Layout
+    Using: Two column floating layout
+    Total width: 250px
+*/</span>
+</code></pre>
+<p>No single line // available</p>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="order-matters">Order matters</h2>
+<pre><code class="lang-html hljs "><span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+  ...
+  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"reset.css"</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"main.css"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+</code></pre>
+</section>
+
+          </section>
+
+          <section hidden="" aria-hidden="true" class="stack future" style="display: none;">
+            <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fonts and text</td>
+<td><em>Sizes, margins, fontfaces</em></td>
+</tr>
+<tr>
+<td>Graphics</td>
+<td><em>Colors, borders, shadows, effects, backgrounds</em></td>
+</tr>
+<tr>
+<td>Layout</td>
+<td><em>Boxes, positioning, layout models</em></td>
+</tr>
+<tr>
+<td>Animations</td>
+<td><em>Transformations, transitions</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="media-queries">Media Queries</h2>
+<p>Responsive page?</p>
+<pre><code class="lang-html hljs "><span class="hljs-comment">&lt;!-- CSS media query on a link element --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">media</span>=<span class="hljs-value">"(max-width: 800px)"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"example.css"</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- CSS media query within a stylesheet --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (max-width: <span class="hljs-number">600px</span>) </span>{
+  <span class="hljs-class">.facet_sidebar</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> none</span></span>;
+  <span class="hljs-rule">}</span></span>
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-css hljs "><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> tv and (min-width: <span class="hljs-number">700px</span>) and (orientation: landscape) </span>{ ...  }
+</code></pre>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries">https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries</a></p>
+</section>
+
+
+          </section>
+
+          <!-- CSS Preprocessors -->
+          <section hidden="" aria-hidden="true" class="stack future" style="display: none;">
+            <!-- What is? -->
+            <section data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="css-frameworks">CSS Frameworks</h2>
+<p>  A CSS Framework will give you a<br>
+  solid foundation to build your<br>
+  site upon. But beware, you do<br>
+  not want to end up with yet<br>
+  another Bootstrap-site.</p>
+<ul>
+<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="http://semantic-ui.com/">Semantic UI</a></li>
+<li><a href="http://foundation.zurb.com/">Foundation</a></li>
+<li><a href="http://nt1m.github.io/material-framework/">Material Framework</a></li>
+<li><a href="http://materializecss.com/">Materialize</a></li>
+</ul>
+</section>
+
+          </section>
+
+          <!-- CSS Preprocessors -->
+          <section hidden="" aria-hidden="true" class="stack future" style="display: none;">
+            <!-- What is? -->
+            <section style="display: none;">
+                <h2>CSS Preprocessors</h2>
+                A CSS Preprocessor is a set of rules<br>
+                that lets you extend the css-language<br>
+                with some usable parts. The extended <br>
+                css is transformed to regular css using <br>
+                the preprocessor.
+
+            </section>
+
+            <!-- Why? -->
+            <section data-markdown="" data-markdown-parsed="true" class="future" aria-hidden="true" style="display: none;"><h2 id="why-use-css-preprocessors-">Why use CSS Preprocessors?</h2>
+<ul>
+<li>Less css to maintain</li>
+<li>DRY css</li>
+<li>Make calculations in your css</li>
+<li>Better organized css<ul>
+<li>Nesting</li>
+<li>Separate in files</li>
+<li>Use mixins</li>
+</ul>
+</li>
+<li>Use variables!</li>
+</ul>
+</section>
+            <!-- Which? -->
+            <section data-markdown="" data-markdown-parsed="true" class="future" aria-hidden="true" style="display: none;"><h2 id="which-">Which?</h2>
+<ul>
+<li><a href="http://sass-lang.com/">sass</a></li>
+<li><a href="http://lesscss.org/">less</a></li>
+<li><a href="https://learnboost.github.io/stylus/">stylus</a></li>
+</ul>
+<p><br><br>
+If you have worked with CSS before we encourage<br>
+you to try a preprocessor in the first assignment.</p>
+</section>
+
+          </section>
+
+        </div>
+    <div class="backgrounds"><div class="slide-background center present" data-loaded="true" style="display: block;"></div><div class="slide-background future" data-loaded="true" style="display: block;"></div><div class="slide-background future" data-loaded="true" style="display: block;"></div><div class="slide-background stack future" style="display: none;"><div class="slide-background noborderimages present" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background noborderimages present" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background noborderimages present" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background noborderimages present" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background noborderimages present" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><div class="navigate-left"></div><div class="navigate-right enabled"></div><div class="navigate-up"></div><div class="navigate-down"></div></aside><div class="slide-number"></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);">
+                Introduction to web programming
+                (1DV525)
+                CSS
+                
+                    
+                    
+                
+            </div></div>
+
+    <script src="./2.Lecture - CSS_files/head.min.js.download"></script>
+    <script src="./2.Lecture - CSS_files/reveal.js.download"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            width: 1280,
+            height: 800,
+            controls: true,
+            progress: true,
+            history: true,
+            center: false,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '../reveal.js/lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: '../reveal.js/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: '../reveal.js/plugin/highlight/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '../reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+
+    </script><script type="text/javascript" src="./2.Lecture - CSS_files/marked.js.download"></script><script type="text/javascript" src="./2.Lecture - CSS_files/markdown.js.download"></script>
+
+
+
+<script type="text/javascript" src="./2.Lecture - CSS_files/highlight.js.download"></script><script type="text/javascript" src="./2.Lecture - CSS_files/zoom.js.download"></script><script type="text/javascript" src="./2.Lecture - CSS_files/notes.js.download"></script></body></html>

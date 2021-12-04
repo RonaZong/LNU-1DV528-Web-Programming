@@ -1,0 +1,17 @@
+.local,
+.session {
+    width: 45%;
+    float: left;
+    border: 1px solid #999;
+    overflow: auto;
+    padding-left: 1em;
+    margin-right: 1em;
+}
+
+h2 {
+    border-bottom: 1px solid #ccc;
+}
+
+.message {
+    margin-bottom: 24px;
+}

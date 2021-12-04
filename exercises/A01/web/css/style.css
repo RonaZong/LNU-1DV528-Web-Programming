@@ -1,0 +1,93 @@
+/**
+ * css
+ */
+
+ html {
+    background-color: #ccc;
+ }
+
+ body {
+   margin: 8px auto;
+   width: 800px;
+   /* border：10px solid pink; */
+ }
+
+ * {
+   box-sizing: border-box;
+ }
+
+ main,aside {
+   background-color: white;
+   padding: 1em;
+   border: 2px solid #666;
+   margin-top: 20px;
+   margin-bottom: 10px;
+ }
+
+ main {
+   float: left;
+   width: 70%
+ }
+
+ aside {
+   float: left;
+   width: 30%
+ }
+
+ .siteheader {
+   border: 3px solid white;
+   margin-bottom: 20px;
+ }
+
+ .siteheader img {
+   width: 200px;
+   padding-right: 2em;
+   border: 5px solid green;
+   float: right;
+ }
+
+ .sitetitle {
+   font-size: 2em;
+   color: #333;
+ }
+
+ .siteslogan {
+   font-size: 0.5em;
+   color: #666;
+   width: 400px;
+ }
+
+ .navbar {
+   padding: 1em;
+   background-color: #fff;
+   border-top: 1px solid #9c9;
+ }
+
+ .navbar a {
+   display: inline-block;
+   padding: 0.5em 1em;
+   border: 1px solid #999;
+   text-decoration: none;
+ }
+
+ .navbar a:hover {
+   background-color: #eee;
+   text-decoration: underline;
+ }
+
+ .wrapper {
+   border: 1px solid green;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   overflow: auto;
+ }
+
+ .sitefooter {
+   color: white;
+   background-color: #333;
+   padding: 20px;
+ }
+
+ .sitefooter a {
+   color: white;
+ }

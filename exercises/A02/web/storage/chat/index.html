@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chat using local/session storage</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Chat using local/session storage</h1>
+        <p>Open this page in two tabs. Enter data in one tab. Review what happens in the second tab. Enter data in the second tab, review what happens in the first tab. Open a third tab, enter data in it, se what happens in the two other tabs. Do the same with "Clear storage" and compare the results when reloading each tab. Review the source code for details.</p>
+        <p>Read more in
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API">Web Storage API</a>,
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage">Window.sessionStorage</a>,
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">Window.localStorage</a>,
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/StorageEvent">StorageEvent</a></p>
+        <div class="message">
+            <form>
+                    <label>Message:
+                        <input type="text" id="message" placeholder="Enter a chat message">
+                        <input type="button" id="send" value="Send">
+                    </label>
+                    <p><input type="button" id="clear" value="Clear storage"></p>
+            </form>
+        </div>
+        <div class="local">
+            <h2>Local storage</h2>
+            <div id="local"></div>
+        </div>
+        <div class="session">
+            <h2>Session storage</h2>
+            <div id="session"></div>
+        </div>
+    </main>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

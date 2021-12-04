@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://rawgit.com/CS-LNU-Learning-Objects/html/master/lectures/01/index.html#/ -->
+<html lang="sv-se" class="lnu-intro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Lecture - HTML</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="icon" href="https://rawgit.com/CS-LNU-Learning-Objects/html/master/lectures/images/favicon.png" type="image/png">
+
+    <link rel="stylesheet" href="./1.Lecture - HTML_files/reveal.css">
+    <link rel="stylesheet" href="./1.Lecture - HTML_files/black.css" id="theme">
+    <link rel="stylesheet" href="./1.Lecture - HTML_files/black.lnu.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="./1.Lecture - HTML_files/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script><link rel="stylesheet" type="text/css" href="./1.Lecture - HTML_files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+</head>
+
+<body style="transition: -webkit-transform 0.8s ease 0s;">
+
+    <div class="reveal lnu slide" role="application" data-transition-speed="default" data-background-transition="fade">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides" style="width: 1280px; height: 800px; zoom: 0.675;">
+            <!-- Start -->
+            <section class="center present" data-state="lnu-intro" style="top: 156px; display: block;">
+                <h3>Introduction to Web Programming</h3>
+                <h3>(1DV525)</h3>
+                <h1>HTML</h1>
+                <div class="lnu-footer">
+                    <img src="./1.Lecture - HTML_files/lnu-logotype.png">
+                    <img src="./1.Lecture - HTML_files/lnu-symbol.png">
+                </div>
+            </section>
+
+            <!-- CC -->
+            <section data-state="lnu-cc" class="future" style="display: block;" hidden="" aria-hidden="true">
+                <h2>Licence for this work</h2>
+                <p>
+                    This work is produced by Johan Leitet for the course Introduction to Web Programming (1DV525) at Linnaeus University.
+                </p>
+                <p>All content in this work excluding photographs, icons, picture of course litterature and Linnaeus University logotype and symbol, is licensied under a
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="./1.Lecture - HTML_files/80x15.png"></a><br>Creative Commons Attribution 4.0 International License.</p>
+                <h4>You are free to </h4>
+                <ul>
+                    <li>copy and redistribute the material in any medium or format</li>
+                    <li>spread the whole or parts of the content</li>
+                    <li>show the whole or parts of the content publicly and digital</li>
+                    <li>convert the content to another format</li>
+                    <li>change the content</li>
+                </ul>
+                <p>
+                    If you change the content do not use the photographs, icons, picture of the course literature or Linnaeus University logotype and symbol in your new work!
+                </p>
+                <p>
+                    At all times you must give credit to: ”Linnaeus university – Introduction to Web Programming (1DV022)” with the link https://coursepress.lnu.se/kurs/introduction-to-web-programming/ and to the Creative Common-license above.
+                </p>
+            </section>
+
+            <!-- Content -->
+            <section data-markdown="" data-markdown-parsed="true" class="future" style="display: block;" hidden="" aria-hidden="true"><h2 id="content">Content</h2>
+<ul>
+<li>The web as a platform</li>
+<li>A brief look on protocols</li>
+<li>Markup languages from HTML to HTML5</li>
+<li>A HTML-document</li>
+<li>structure</li>
+<li>entities</li>
+<li>charcodes</li>
+<li>comments and indenting</li>
+<li>graphic vs. logical formatting</li>
+<li>overview of tags</li>
+<li>Forms</li>
+</ul>
+</section>
+
+        <!-- The Web as an platform -->
+        <section class="stack future" style="display: none;" data-previous-indexv="0" hidden="" aria-hidden="true">
+             <!-- Information carry -> Applications -->
+
+             <!-- Client / Server -->
+            <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;" aria-hidden="true"><h2 id="client-server">Client - Server</h2>
+<p><img src="./1.Lecture - HTML_files/Client-server.png" alt=""></p>
+</section>
+
+        </section>
+
+        <!-- A breif look on protocols -->
+        <section hidden="" aria-hidden="true" class="stack future" style="display: none;" data-previous-indexv="0">
+             <!-- The web != Intnet -->
+
+
+            <section data-background-image="http://99percentinvisible.org/app/uploads/2016/03/roundaboutgif.gif" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="the-web-internet">The Web != Internet</h2>
+</section>
+             <!-- http / https -->
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="protocols">Protocols</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">TCP/IP model</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP</td>
+<td style="text-align:center">Internet layer</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>TCP</td>
+<td style="text-align:center">Transport layer</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>http (<a href="https://tools.ietf.org/html/rfc2616">1.1</a> / <a href="https://tools.ietf.org/html/rfc7540">2</a>)</td>
+<td style="text-align:center">Application layer</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>TLS / SSL</td>
+<td style="text-align:center">Application layer</td>
+<td style="text-align:center"><a href="https://tools.ietf.org/html/rfc2818">https</a></td>
+</tr>
+<tr>
+<td><a href="https://tools.ietf.org/html/rfc6455">WebSocket</a></td>
+<td style="text-align:center">Application layer</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+        </section>
+<!--
+        - Markup languages from HTML to HTML5
+         - Tidsresa
+         - "Word document"
+         - Tidslinje- -!>
+         <!-- Markup languages from HTML to HTML5 -->
+         <section hidden="" aria-hidden="true" class="stack future" style="display: none;" data-previous-indexv="0">
+           <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="1993">1993</h2>
+<p><img src="./1.Lecture - HTML_files/History1993.png" alt=""></p>
+</section>
+
+           <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="1994">1994</h2>
+<p><img src="./1.Lecture - HTML_files/History1994.png" alt=""></p>
+</section>
+
+           <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="1996">1996</h2>
+<p><img src="./1.Lecture - HTML_files/History1996.gif" alt=""></p>
+</section>
+
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="1999">1999</h2>
+<p><img src="./1.Lecture - HTML_files/History1999.png" alt=""></p>
+</section>
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="2003">2003</h2>
+<p><img src="./1.Lecture - HTML_files/History1994.png" alt=""></p>
+</section>
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="web-page-web-application">Web page / Web application</h2>
+<p><img src="./1.Lecture - HTML_files/Web page _ Web application.png" alt=""></p>
+</section>
+
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="web-as-a-platform">Web as a platform</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Demos_of_open_web_technologies">Web as a platform</a></li>
+<li>The web of things</li>
+</ul>
+</section>
+
+        </section>
+
+        <section hidden="" aria-hidden="true" class="stack future" style="display: none;" data-previous-indexv="0">
+            <!-- Seperation of concern -->
+            <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h1 id="the-goal">The goal</h1>
+<p>Seperation of concerns (SoC)<br><br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="./1.Lecture - HTML_files/html64p.png" alt=""></td>
+<td style="text-align:center">.html</td>
+<td style="text-align:center">Structure</td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="./1.Lecture - HTML_files/css64g.png" alt=""></td>
+<td style="text-align:center">.css</td>
+<td style="text-align:center">Presentation</td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="./1.Lecture - HTML_files/js64y.png" alt=""></td>
+<td style="text-align:center">.js</td>
+<td style="text-align:center">Behavior</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="markup">Markup</h2>
+<p><img src="./1.Lecture - HTML_files/pages.png" alt=""></p>
+</section>
+
+
+
+         <!-- HTML documents -->
+
+           <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="the-dawn-of-html5">The dawn of HTML5</h2>
+<p><img src="./1.Lecture - HTML_files/Timeline.png" alt=""></p>
+<ul>
+<li>W3C HTML 5.2 <a href="http://w3c.github.io/html/">http://w3c.github.io/html/</a></li>
+<li>HTML Living standard <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+<br></li>
+<li><a href="http://caniuse.com/">http://caniuse.com</a></li>
+</ul>
+</section>
+
+
+           <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="the-foundation">The foundation</h2>
+<pre><code class="lang-html hljs "><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">"sv"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span> /&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+       <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+       <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+</section>
+
+           <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="doctype">doctype</h2>
+<pre><code class="lang-html hljs ">  <span class="hljs-doctype">&lt;!doctype html&gt;</span>
+</code></pre>
+<ul>
+<li><strong>First</strong> in document</li>
+<li>Standard mode / Quirks mode</li>
+</ul>
+</section>
+
+           <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="hypertext-markup-language">Hypertext <strong>Markup</strong> Language</h2>
+<pre><code class="lang-html hljs "> This is some <span class="hljs-tag">&lt;<span class="hljs-title">em</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"more"</span>&gt;</span>HTML<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span> in a document
+</code></pre>
+<p>Tag</p>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;<span class="hljs-title">em</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;<span class="hljs-title">em</span>&gt;</span> <span class="hljs-comment">&lt;!-- Start tag --&gt;</span>
+</code></pre>
+<pre><code class="lang-html hljs "> <span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span> <span class="hljs-comment">&lt;!-- End tag --&gt;</span>
+</code></pre>
+<p>Element</p>
+<pre><code class="lang-html hljs ">  <span class="hljs-tag">&lt;<span class="hljs-title">em</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"more"</span>&gt;</span>HTML<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>
+</code></pre>
+<p>Attribute</p>
+<pre><code class="lang-html hljs ">  class="more"
+</code></pre>
+<p>Attribute name</p>
+<pre><code class="lang-html hljs ">  class
+</code></pre>
+<p>Attribute value</p>
+<pre><code class="lang-html hljs ">  more
+</code></pre>
+</section>
+
+           <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="-lt-html-gt-">&lt;HTML&gt;</h2>
+<pre><code class="lang-html hljs "><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">"en"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<ul>
+<li>The document</li>
+<li>lang defines the main language of the page</li>
+</ul>
+</section>
+
+             <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="-lt-head-gt-">&lt;head&gt;</h2>
+<pre><code class="lang-html hljs "><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">"en"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>Title</p>
+<p><img src="./1.Lecture - HTML_files/title.png" alt=""></p>
+<p>Meta charset</p>
+<ul>
+<li>uft-8</li>
+<li>iso-8859-1 (~ win-1252)</li>
+</ul>
+</section>
+
+               <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="-lt-body-gt-">&lt;body&gt;</h2>
+<pre><code class="lang-html hljs "><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">"en"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<p>The content of the webpage</p>
+</section>
+
+        </section>
+
+        <section hidden="" aria-hidden="true" class="stack future" style="display: none;" data-previous-indexv="0">
+
+
+
+
+
+          <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="block-and-inline-elements">Block and inline elements</h2>
+<p><img src="./1.Lecture - HTML_files/Block and inline.png" alt=""></p>
+<ul>
+<li>HTML5 introduces a more complex model, but this one is still applicable</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Block elements</th>
+<th>Inline elements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>div,p,h1-h6</td>
+<td>img</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+
+            <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="structure">Structure</h2>
+<p><img src="./1.Lecture - HTML_files/Page structure.png" alt=""></p>
+</section>
+
+              <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="classic-html">Classic HTML</h2>
+<p><img src="./1.Lecture - HTML_files/Page Structure HTML.png" alt=""></p>
+</section>
+                <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="html5">HTML5</h2>
+<p><img src="./1.Lecture - HTML_files/Page Structure HTML5.png" alt=""></p>
+</section>
+
+
+                  <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="structure">Structure</h2>
+<pre><code class="lang-html hljs ">    <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">header</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">header</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">nav</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">main</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">article</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">article</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">article</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">main</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">aside</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">section</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">section</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">aside</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+</code></pre>
+<ul>
+<li><a href="https://rawgit.com/CS-LNU-Learning-Objects/html/master/lectures/01/example/html5-template.html">See example "HTML5 Template"</a></li>
+<li><a href="https://rawgit.com/CS-LNU-Learning-Objects/html/master/lectures/01/example/html5-template-filled.html">See example "HTML5 Template - Filled"</a></li>
+</ul>
+</section>
+
+                  <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="validation">Validation</h2>
+<ul>
+<li>Good practice</li>
+<li><a href="https://validator.w3.org/">https://validator.w3.org/</a></li>
+</ul>
+</section>
+
+                  <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="block-and-inline-elements">Block and inline elements</h2>
+<table>
+<thead>
+<tr>
+<th>Block elements</th>
+<th>Inline elements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>div</td>
+<td>img</td>
+</tr>
+<tr>
+<td>p</td>
+<td>a</td>
+</tr>
+<tr>
+<td>h1-h6</td>
+<td>em, strong</td>
+</tr>
+<tr>
+<td>ul, ol, li</td>
+<td>b,i</td>
+</tr>
+<tr>
+<td>header, hgroup</td>
+<td>...</td>
+</tr>
+<tr>
+<td>footer</td>
+</tr>
+<tr>
+<td>main, aside, nav</td>
+<td></td>
+</tr>
+<tr>
+<td>section, article</td>
+</tr>
+<tr>
+<td>details, menu</td>
+</tr>
+<tr>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+</section>
+        </section>
+
+        <section hidden="" aria-hidden="true" class="stack future" style="display: none;" data-previous-indexv="0">
+          <section class="noborderimages" data-markdown="" data-markdown-parsed="true" style="display: none;"><h2 id="url">URL</h2>
+<p>A URL (Uniform Resource Locator) is a webpage address on internet.</p>
+<pre><code class=" hljs groovy"><span class="hljs-string">https:</span><span class="hljs-comment">//1dv525.github.io/xx222yy-examination-1/</span>
+</code></pre><p><br><br></p>
+<ul>
+<li>You need to publish your<br>
+web site on a web server<br>
+to be able to reach it.</li>
+</ul>
+</section>
+
+          <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="indenting-your-code">Indenting your code</h2>
+<pre><code class="lang-html hljs ">  ••<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  ••••<span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+  ••••••<span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>First in list<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  ••••••<span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Second in list<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  ••••<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  ••••<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+  ••••••This is a paragraph of text with something <span class="hljs-tag">&lt;<span class="hljs-title">em</span>&gt;</span>important<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>
+  ••••<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  ••••<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span> Another paragraph of text...<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  ••<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<pre><code class="lang-html hljs ">   -&gt;<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+   -&gt;-&gt;<span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+   -&gt;-&gt;-&gt;<span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>First in list<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+   -&gt;-&gt;-&gt;<span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Second in list<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+   -&gt;-&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+   -&gt;-&gt;<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+   -&gt;-&gt;-&gt;This is a paragraph of text with something <span class="hljs-tag">&lt;<span class="hljs-title">em</span>&gt;</span>important<span class="hljs-tag">&lt;/<span class="hljs-title">em</span>&gt;</span>
+   -&gt;-&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+   -&gt;-&gt;<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span> Another paragraph of text...<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+   -&gt;<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+</section>
+
+          <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="html-entities">HTML entities</h2>
+</section>
+
+          <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="html-comments">HTML comments</h2>
+<pre><code class="lang-html hljs "><span class="hljs-comment">&lt;!-- This is a comment in HTML. It can be
+     multiline. Remember! Anyone can read this
+     comment!!! --&gt;</span>
+</code></pre>
+</section>
+
+          <section class="noborderimages future" data-markdown="" data-markdown-parsed="true" aria-hidden="true" style="display: none;"><h2 id="references">References</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML">Mozilla Developer network</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">Mozilla Developer network - HTML element reference</a></li>
+<li><a href="https://dev.w3.org/html5/html-author/">W3C HTML5 reference for authors</a></li>
+<li><a href="http://www.html5rocks.com/en/">HTML5 Rocks</a></li>
+<li><del>w3schools.org</del></li>
+</ul>
+</section>
+
+
+        </section>
+        </div>
+    <div class="backgrounds"><div class="slide-background center present" data-loaded="true" style="display: block;"></div><div class="slide-background future" data-loaded="true" style="display: block;"></div><div class="slide-background future" data-loaded="true" style="display: block;"></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background noborderimages present" data-loaded="true" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background present" data-background-hash="0http://99percentinvisible.org/app/uploads/2016/03/roundaboutgif.gifnullnullnullnullnullnull" data-loaded="true" style="display: none; background-image: url(&quot;http://99percentinvisible.org/app/uploads/2016/03/roundaboutgif.gif&quot;);"></div><div class="slide-background noborderimages future" style="display: none;" data-loaded="true"></div></div><div class="slide-background stack future" style="display: none;" data-loaded="true"><div class="slide-background noborderimages present" data-loaded="true" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background noborderimages present" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background noborderimages present" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background noborderimages present" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div><div class="slide-background noborderimages future" style="display: none;"></div></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><div class="navigate-left"></div><div class="navigate-right enabled"></div><div class="navigate-up"></div><div class="navigate-down"></div></aside><div class="slide-number"></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);">
+                Introduction to Web Programming
+                (1DV525)
+                HTML
+                
+                    
+                    
+                
+            </div></div>
+
+    <script src="./1.Lecture - HTML_files/head.min.js.download"></script>
+    <script src="./1.Lecture - HTML_files/reveal.js.download"></script>
+
+    <script>
+        // Full list of configuration options available at:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            width: 1280,
+            height: 800,
+            controls: true,
+            progress: true,
+            history: true,
+            center: false,
+
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+            // Optional reveal.js plugins
+            dependencies: [
+                { src: '../reveal.js/lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: '../reveal.js/plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: '../reveal.js/plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: '../reveal.js/plugin/highlight/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: '../reveal.js/plugin/notes/notes.js', async: true }
+            ]
+        });
+
+    </script><script type="text/javascript" src="./1.Lecture - HTML_files/marked.js.download"></script><script type="text/javascript" src="./1.Lecture - HTML_files/markdown.js.download"></script>
+
+
+
+<script type="text/javascript" src="./1.Lecture - HTML_files/highlight.js.download"></script><script type="text/javascript" src="./1.Lecture - HTML_files/zoom.js.download"></script><script type="text/javascript" src="./1.Lecture - HTML_files/notes.js.download"></script></body></html>
