@@ -1,6 +1,7 @@
 const nickname = document.getElementById("nickname")
 const time = document.getElementById("time")
 const content = document.getElementById("content")
+const Answer = document.getElementById('Answer')
 const answer = document.getElementById("answer")
 const answermessage = document.getElementById("answermessage")
 // const sessionOutput = document.getElementById("session")
@@ -21,7 +22,7 @@ window.onload = function () {
 }
 
 function timeLinked() {
-  t = 10
+  t = 100
   runTimer = setInterval(function() {
     t--
     time.innerHTML = t
@@ -35,15 +36,59 @@ function timeLinked() {
 
 function updateContent(str) {
     content.innerHTML = str
+
 }
 
 function updateAnswerMessage(str) {
-    answermessage.innerHTML = str.toString()
-}
+    var q
 
-// function updateSessionStorage(str) {
-//     sessionOutput.innerHTML = str
-// }
+    if (nextUrl == "https://courselab.lnu.se/quiz/question/21") {
+        q = "<p>" + 
+            "<label for=\"Radios\">Answer:" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt1\" οnclick=\"getValue()\">2" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt2\" οnclick=\"getValue()\">8" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt3\" οnclick=\"getValue()\">10" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt4\" οnclick=\"getValue()\">28" +
+            "</label>" +
+            "</p >"
+        answermessage.innerHTML = q
+    }
+    else if (nextUrl == "https://courselab.lnu.se/quiz/question/6") {
+        q = "<p>" + 
+            "<label for=\"Radios\">Answer:" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt1\" οnclick=\"getValue()\">You make another!" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt2\" οnclick=\"getValue()\">You console it!" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt3\" οnclick=\"getValue()\">You don´t!"
+            "</label>" +
+            "</p >"
+        answermessage.innerHTML = q
+    }
+    else if (nextUrl == "https://courselab.lnu.se/quiz/question/32456") {
+        q = "<p>" + 
+            "<label for=\"Radios\">Answer:" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt1\" οnclick=\"getValue()\">lol" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt2\" οnclick=\"getValue()\">Error" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt3\" οnclick=\"getValue()\">NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaN Batman!"
+            "</label>" +
+            "</p >"
+        answermessage.innerHTML = q
+    }
+    else if (nextUrl == "https://courselab.lnu.se/quiz/question/326") {
+        q = "<p>" + 
+            "<label for=\"Radios\">Answer:" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt1\" οnclick=\"getValue()\">Måsvingen" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt2\" οnclick=\"getValue()\">Hakparamesen" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt3\" οnclick=\"getValue()\">DOMherren" +
+            "<input type=\"radio\" name=\"Radios\" value=\"alt3\" οnclick=\"getValue()\">Kokokolongöken"
+            "</label>" +
+            "</p >"
+        answermessage.innerHTML = q
+    }
+    else {
+        answermessage.innerHTML = ""
+    }
+
+}
 
 function clearStorage() {
   console.log("CLEAR STORAGE")
@@ -63,7 +108,7 @@ function initStorage() {
 
 function inputSessionStorage() {
   let timeUsed = {
-    data: 10 - t
+    data: 100 - t
   }
   let timeLog = sessionStorage.getItem("TimeUsed")
   timeLog = JSON.parse(timeLog)
@@ -103,9 +148,47 @@ link2.addEventListener("click", async () => {
     clearInterval(runTimer)
     let status = "Your answer: "
     let theAnswer = answer.value
+    if (nextUrl == "https://courselab.lnu.se/quiz/answer/21") {
+        var radio = document.getElementsByName("Radios");
+        var i = 0
+        for (i=0; i<radio.length; i++) {
+            if (radio[i].checked) {
+                theAnswer = radio[i].value
+            }
+        }   
+    }
+    else if (nextUrl == "https://courselab.lnu.se/quiz/answer/6") {
+        var radio = document.getElementsByName("Radios");
+        var i = 0
+        for (i=0; i<radio.length; i++) {
+            if (radio[i].checked) {
+                theAnswer = radio[i].value
+            }
+        }   
+    }
+    else if (nextUrl == "https://courselab.lnu.se/quiz/answer/32456") {
+        var radio = document.getElementsByName("Radios");
+        var i = 0
+        for (i=0; i<radio.length; i++) {
+            if (radio[i].checked) {
+                theAnswer = radio[i].value
+            }
+        }   
+    }
+    else if (nextUrl == "https://courselab.lnu.se/quiz/answer/326") {
+        var radio = document.getElementsByName("Radios");
+        var i = 0
+        for (i=0; i<radio.length; i++) {
+            if (radio[i].checked) {
+                theAnswer = radio[i].value
+            }
+        }   
+    }
+    
     let body = {
       answer: theAnswer
     }
+
     console.log(status + theAnswer)
     let response = await sendQuestionResponsePost(nextUrl, body)
     let data = await response.json()
@@ -131,10 +214,12 @@ link3.addEventListener("click", async () => {
     let data = await response.json()
     updateContent(JSON.stringify(data.question, null, 4))
     if (data.hasOwnProperty("alternatives")) {
+        Answer.style.display = 'none';
         console.log(data.alternatives);
         updateAnswerMessage(JSON.stringify(data.alternatives, null, 4))
     }
     else {
+        Answer.style.display = ''
         updateAnswerMessage("")
     }
     console.log(response)
