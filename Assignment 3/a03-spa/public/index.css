@@ -1,0 +1,225 @@
+/**
+ * Xingrong A03
+ */
+
+html {
+   background-color: #F0DAB4;
+   width: 100%;
+   height: 100%;
+   background-position: center;
+   background-repeat: repeat;
+   background-size: cover;
+}
+
+@media screen and (max-width: 1000px) {
+   header, body{
+     margin: 8px auto;
+     width: auto;
+   }
+ }
+
+header img {
+  display: block;
+  margin: auto;
+  height: 128px;
+  width: 128px;
+  padding: 1rem;
+}
+
+canvas {
+  display: block;
+  margin: 0rem auto;
+  width: 540px;
+  height: 0px;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    border-top: 2px solid #FFF;
+    background-color: #CDD2B4;
+}
+
+.navbar a {
+    display: inline-block;
+    padding: 1em 1em;
+    font-size: 12px;
+    color: #8E6011;
+    text-decoration: none;
+    font-family: cursive; 
+    display: block;
+}
+
+@media screen and (max-width: 1000px) {
+   .navbar a {
+     display: inline-block;
+     padding: 1em 1em;
+     font-size: 12px;
+     /* width: 100%; */
+     color: #8E6011;
+     text-decoration: none;
+     font-family: cursive;
+    }
+ }
+
+a:hover {
+  background-color: #eee;
+  text-decoration: underline;
+}
+
+.textDescription{
+    padding: 4em;
+    background-color: #CDD2B4;
+    margin: 0vh 0vh 0vh 10vh;
+    border-radius: 25px;
+    color: white;
+}
+
+.container {
+    border: 2px solid #FFF;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    color: #555;
+    margin: 10px 0;
+    overflow-wrap: break-word;
+}
+
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.window {
+    border: 2px solid #8E6011;
+    border-radius: 5px;
+    height: 297px;
+    width: 255px;
+    margin-left: 150px;
+    margin-top: 40px;
+    position: fixed;
+}
+
+.navWindow {
+    height: 38px;
+    border: 2px solid #CDD2B4;
+    background-color: #CDD2B4;
+}
+
+button{
+    cursor: pointer;
+}
+
+.buttonX {
+    float: right;
+    width: 55px;
+    height: 37px;
+    background-color: #be5b6e;
+    color: #FFF;
+    border: none;
+    border-radius: 25px;
+}
+
+
+/* Memory Game Window*/
+.representMemoryWindow{
+    color: #8E6011;
+    width: 45px;
+    margin-top: 10px;
+    float: left;
+}
+
+.memory img {
+    width: 60px;
+}
+
+.memory .removed {
+    visibility: hidden;
+}
+
+
+/* Chat Window*/
+.chat {
+    height: 255px;
+    width: 255px;
+    margin-top: 0px;
+    background-color: #CDD2B4;
+    color: #8E6011;
+    position: absolute;
+}
+
+.showMessages {
+    height: 178px;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.userName{
+    height: 21px;
+    background-color:#CDD2B4;
+}
+
+.text {
+    bottom: -4px;
+    position: absolute;
+    float: left;
+    width: 255px;
+}
+
+.representChatWindow{
+    color: #8E6011;
+    width: 45px;
+    margin-top: 10px;
+    float: right;
+}
+
+.changeNameButton {
+    background-color: #be5b6e;
+    border: none;
+    color: #FFF;
+    padding: 11px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    border-radius: 16px;
+}
+
+.UserNameTextBox{
+    width: 102px;
+    height: 31px;
+}
+
+.buttonOk{
+    height: 37px;
+    width: 41px;
+    border: none;
+    background-color: #be5b6e;
+    border-radius: 25px;
+    color: #FFF;
+}
+
+textarea {
+    width: 249px;
+    height: 50px;
+}
+
+
+/* Sokoban Window */
+.game{
+    width: 585px;
+    height: 520px;
+    line-height: 0;
+}
+
+.sokobanWindow{
+    height: 522px;
+    width: 570px;
+}
+
+.sokobanGameTitle{
+    color: #8E6011;
+    margin-top: 10px;
+    float: left;
+}
