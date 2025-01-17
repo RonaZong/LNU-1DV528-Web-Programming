@@ -1,6 +1,12 @@
 The Chat application
 ==========================
 
+This a a short description on the chat application that uses the WebSockets API.
+
+[[_TOC_]]
+
+
+
 The server
 ------------------
 
@@ -26,13 +32,6 @@ The properties type, data, username and key are mandatory when sending a message
 
 
 
-The API-key
-------------------
-
-If you are logged in to coursepress you should be able to see the API-key near the bottom of this page. The key is used to keep track of users of the application and to curb abuse.
-
-
-
 Heartbeat
 ------------------
 
@@ -47,3 +46,14 @@ The web socket server will send a "heartbeat" message to keep the connection ope
 ```
 
 Your application can simply ignore those messages completly.
+
+
+
+The API-key
+------------------
+
+Use the following API key.
+
+```
+eDBE76deU7L0H9mEBgxUKVR0VCnq0XBd
+```
