@@ -1,0 +1,16 @@
+<h1>Guessing Game</h1>
+
+<p>I'm thinking of a number between 1 and 100. Can you guess what number I am thinking of?</p>
+
+{{#if message}}
+  <p style="background-color: lime; padding: 1em">{{message}}</p>
+{{/if}}
+
+<form method="post" action="/game/guess">
+    <input type="text" name="guess">
+    <input type="submit" name="doit" value="Guess">
+</form>
+
+<p><a href="/game/cheat">Cheat and see the number</a></p>
+
+<p><a href="/game/init">Restart the game</a></p>

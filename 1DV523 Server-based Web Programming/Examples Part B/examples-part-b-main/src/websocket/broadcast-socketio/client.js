@@ -1,0 +1,87 @@
+/**
+ * To setup a websocket connection, and nothing more.
+ */
+(function () {
+    "use strict";
+
+    let websocket;
+    let url         = document.getElementById("connect_url");
+    let connect     = document.getElementById("connect");
+    let sendMessage = document.getElementById("send_message");
+    let message     = document.getElementById("message");
+    let close       = document.getElementById("close");
+    let output      = document.getElementById("output");
+
+
+
+    /**
+     * Log output to web browser.
+     *
+     * @param  {string} message to output in the browser window.
+     *
+     * @return {void}
+     */
+    function outputLog(message) {
+        let now = new Date();
+        let timestamp = now.toLocaleTimeString();
+
+        output.innerHTML += `${timestamp} ${message}<br>`;
+        output.scrollTop = output.scrollHeight;
+    }
+
+
+
+
+    /**
+     * What to do when user clicks Connect
+     */
+    connect.addEventListener("click", function(/*event*/) {
+        console.log("Connecting to: " + url.value);
+        websocket = io(); //url.value);
+
+        websocket.onopen = function() {
+            console.log("The websocket is now open.");
+            console.log(websocket);
+            outputLog("The websocket is now open.");
+        };
+
+        websocket.onmessage = function(event) {
+            console.log("Receiving message: " + event.data);
+            console.log(event);
+            console.log(websocket);
+            outputLog("Server said: " + event.data);
+        };
+
+        websocket.onclose = function() {
+            console.log("The websocket is now closed.");
+            console.log(websocket);
+            outputLog("Websocket is now closed.");
+        };
+    }, false);
+
+
+
+    /**
+     * What to do when user clicks to send a message.
+     */
+    sendMessage.addEventListener("click", function(/*event*/) {
+        let messageText = message.value;
+
+        websocket.emit(messageText);
+        console.log("Sending message: " + messageText);
+        outputLog("You said: " + messageText);
+    });
+
+
+
+    /**
+     * What to do when user clicks Close connection.
+     */
+    close.addEventListener("click", function(/*event*/) {
+        console.log("Closing websocket.");
+        websocket.emit("Client closing connection by intention.");
+        websocket.close();
+        console.log(websocket);
+        outputLog("Prepare to close websocket.");
+    });
+})();

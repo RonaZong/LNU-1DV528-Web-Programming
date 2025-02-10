@@ -1,0 +1,15 @@
+{
+  "name": "console-table-printer",
+  "version": "1.0.0",
+  "description": "--- revision:      \"2023-01-16\": \"(A, mos) First version.\" --- Print out a table to console using an external npm module ==============================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "console-table-printer": "^2.11.1"
+  }
+}

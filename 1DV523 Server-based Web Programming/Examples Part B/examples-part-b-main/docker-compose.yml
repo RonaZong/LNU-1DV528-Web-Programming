@@ -1,0 +1,57 @@
+services:
+
+  # Nginx with a static website
+  nginx:
+    build:
+      context: .
+      dockerfile: .docker/nginx/Dockerfile
+    ports:
+      - "9080:80"
+      - "9443:443"
+    volumes:
+      - .:/app
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d # This maps nginx config volume
+      #- ./public:/public # This maps your local public directory volume
+
+  # Apache with a static website
+  apache:
+    build:
+      context: .
+      dockerfile: .docker/apache/Dockerfile
+    ports:
+      - "9080:80"
+      - "9443:443"
+    volumes:
+      - .:/app
+      - ./.docker/apache/sites-enabled:/etc/apache2/sites-enabled
+
+  # PHP with builtin webserver
+  php:
+    build:
+      context: .
+      dockerfile: .docker/php/Dockerfile
+    ports:
+      - "9080:80"
+    volumes:
+      - .:/app
+
+  # Python with builtin webserver
+  python:
+    build:
+      context: .
+      dockerfile: .docker/python/Dockerfile
+    ports:
+      - "9080:80"
+    volumes:
+      - .:/app
+
+  # Node example, with or without server
+  node:
+    build:
+      context: .
+      dockerfile: .docker/node/Dockerfile
+    ports:
+      - "9003:9003"
+    volumes:
+      - .:/app
+      - /app/node_modules/

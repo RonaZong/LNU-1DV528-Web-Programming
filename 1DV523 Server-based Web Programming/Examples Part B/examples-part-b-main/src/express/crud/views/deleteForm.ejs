@@ -1,0 +1,12 @@
+<%- include('header') -%>
+
+<h2>Delete</h2>
+
+<p>Check so that the itemId actually exists in the databases and show some details on it.</p>
+
+<form method="post" action="/crud/delete">
+    <p><input type="text" name="itemId" readonly="readonly" value="<%= itemId %>"></p>
+    <p><input type="submit" name="doit" value="Delete"></p>
+</form>
+
+<%- include('footer') -%>

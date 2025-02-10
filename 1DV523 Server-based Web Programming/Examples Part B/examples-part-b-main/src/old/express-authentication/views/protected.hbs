@@ -1,0 +1,13 @@
+<h1>Protected page</h1>
+
+{{#if flash}}
+<p style="padding: 1em; background-color: #ccf">{{ flash }}</p>
+{{/if}}
+
+<p>This is a protected page.</p>
+
+<p>You need to be authenticated to access this page.</p>
+
+<p>I recognize you as the user: <b>{{userName}}</b></p>
+
+<p><a href="/login">Go to public welcome page</a></p>

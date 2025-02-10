@@ -1,0 +1,8 @@
+<h1>XSS 1</h1>
+
+<p>Can you inject some JavaScript into this page?</p>
+
+<form>
+    <input type="search" name="search" value="{{{ search }}}">
+    <input type="submit" name="doit" value="Search">
+</form>

@@ -1,0 +1,13 @@
+body {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.output {
+  height: 10em;
+  width: 100%;
+}
+
+h1 {
+  border-bottom: 4px double #ccc;
+}

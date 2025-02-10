@@ -1,0 +1,505 @@
+<!doctype html>
+<html class="theme-5">
+<meta charset="utf-8" />
+<link href="../html-slideshow.bundle.min.css" rel="stylesheet" />
+<link href="../style.css" rel="stylesheet" />
+<script src="https://dbwebb.se/cdn/js/html-slideshow_v1.1.0.bundle.min.js"></script>
+
+<title>Authentication</title>
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# Authentication
+## Working with the session
+### Mikael Roos
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Agenda
+
+* Express
+* Session
+* Flash messages
+* Authentication
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# Session
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Session 
+
+* Server side storage for each user session
+* Remember based on cookies
+    * Session-cookie sent on each HTTP request
+* Connecting a session-cookie to a user session on the server side.
+    * Session data stored in files/database on the server
+* Store details on the current user
+* Enable login
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Use session 
+
+* Write/Read the session through `req.session`
+
+```
+controller.guess = (req, res) => {
+    const lastGuess = req.session.lastGuess ?? null
+    const flashMessage = req.session.flashMessage ?? null
+    const numGuesses = req.session.numGuesses ?? 0
+
+    req.session.lastGuess = null
+    req.session.flashMessage = null
+
+    const data = {
+        lastGuess,
+        flashMessage,
+        numGuesses
+    }
+    res.render('guess_form', data)
+}  
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# express-session 
+
+* Enable the session as middleware in the server
+* Deal with session-cookies and parsing session data
+
+```
+import session from 'express-session'
+
+app.use(session({
+  cookie: {
+    maxAge: 60000
+  },
+  resave: false,
+  saveUninitialized: true,
+  secret: 'keyboard cat'
+}))
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="center">
+<figure>
+<img src="img/session.png" width="100%">
+<figcaption>Print out details on the session data.</figcaption>
+</figure>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# Flash messages
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Write/Read once 
+
+* Useful when POST route deails with state
+* Provide user feedback if action went okey
+* "Send" message to the next page render
+* Use the session as a storage between page requests
+
+```
+router.get('/guess', controller.guess)
+router.post('/guess', controller.guessCheck)
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Write
+
+* Set the flash message in the session
+
+```
+router.post('/guess', controller.guessCheck)
+```
+
+```
+if (lastGuess === number) {
+    req.session.flashMessage = 'CORRECT! You win the game!'
+} else if (lastGuess > number) {
+    req.session.flashMessage = 'To high!'
+} else if (lastGuess < number) {
+    req.session.flashMessage = 'To low!'
+} else {
+    req.session.flashMessage = 'Was that really a number?'
+}
+res.redirect('/guess/guess')
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Read once
+
+* Read the message, if it is set, then unset it
+
+```
+router.get('/guess', controller.guess)
+```
+
+```
+    const lastGuess = req.session.lastGuess ?? null
+    const flashMessage = req.session.flashMessage ?? null
+    const numGuesses = req.session.numGuesses ?? 0
+
+    req.session.lastGuess = null
+    req.session.flashMessage = null
+
+    const data = {
+        lastGuess,
+        flashMessage,
+        numGuesses
+    }
+    res.render('guess_form', data)
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Output view
+
+* Output the message in the view
+
+```
+<% if (flashMessage) { %>
+    <p style="background-color:aqua; padding: 0.5em">
+        <%= flashMessage %>
+    </p>
+<% } %>
+```
+
+<p class="footnote">How to enable different output for info, warning, error?</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="center">
+<figure>
+    <img src="img/win.png" width="100%">
+    <figcaption>How a flash message can be presented.</figcaption>
+</figure>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# Authentication
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Authentication
+
+> Authentication is the act of proving an assertion, such as the identity of a computer system use.
+
+* Check that a user and password matches a user existing on the system
+
+<p class="footnote">https://en.wikipedia.org/wiki/Authentication</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="center">
+<figure>
+    <img src="img/login.png" width="100%">
+    <figcaption>A HTML form to login to the web application.</figcaption>
+</figure>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# User details
+
+* Store details on the user (in database)
+
+```
+const users = {
+    doe: {
+      name: 'John/Jane Doe',
+      acronym: 'doe',
+      plainPassword: 'doe',
+      bcryptPassword: '$2b$10$dP.ylK3qPmDc8ddeIi9V7Old4nlUsmuyE7U4v8MN22pm1npPXsO6O'
+    },
+    admin: {
+      name: 'Admin Admin',
+      acronym: 'admin',
+      role: 'admin',
+      plainPassword: 'admin',
+      bcryptPassword: '$2b$10$/SIO8Jln047tc6DEf8kDI.pEZetw3qo7SbVWNl96AHtdy7ydbGs16'
+    }
+}  
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Bcrypt 
+
+* Bcrypt a popular hashing algorithm
+* Salt to protect against rainbow table attacks
+* Adaptive function: over time, the iteration count can be increased to make it slower
+    * Resistant to brute-force
+* Default password hash algorithm for OpenBSD
+
+<p class="footnote">https://en.wikipedia.org/wiki/Bcrypt</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Hash password
+
+* The plain text password comes from submitted form
+* Hash it using a salt and a cost
+* Save hashed password in the database
+
+```
+const plainPassword = req.body.password
+const saltRounds = 10;
+const hashedPassword = await bcrypt.hash(plainPassword, saltRounds)
+```
+
+<p class="footnote">Never store or expose the plain password.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# The hash
+
+* bcrypt function compute a 24-byte (192-bit) hash
+
+```
+$2a$12$R9h/cIPz0gi.URNNX3kh2OPST9/PgBkqquzi.Ss7KIUgO2t0jWMUW
+\__/\/ \____________________/\_____________________________/
+Alg Cost      Salt                        Hash
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Verify hash
+
+* Verify the hash when user tries to login
+
+```
+const password = req.body.password
+
+if (user) {
+    // Verify that passwords match
+    const hashedPassword = user.bcryptPassword
+    const success = await bcrypt.compare(password, hashedPassword)
+
+    if (success) {
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# User to session
+
+* Save details on the authenticated user in the session
+
+```
+if (success) {
+    req.session.user = {
+      acronym: user.acronym,
+      role: user.role ?? null
+    }
+    req.session.flashMessage = `Welcome '${username}'!`
+    console.log(req.session)
+    return res.redirect('/user')
+}
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Check user
+
+* Check if user has loggedin through middleware
+* Prepare details `res.data` for the view
+
+```
+// Check if user is logged in and prepare the data object
+app.use((req, res, next) => {
+  res.data.user = {
+    acronym: null,
+    role: null
+  }
+  if (req.session && req.session.user) {
+    res.data.user.acronym = req.session.user.acronym ?? null
+  }
+  if (req.session && req.session.user) {
+    res.data.user.role = req.session.user.role ?? null
+  }
+  next()
+})
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="center">
+<figure>
+    <img src="img/data.png" width="100%">
+    <figcaption>Prepare res.data for the views.</figcaption>
+</figure>
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Adapt interface
+
+* Show different content depending on the user is loggedin or not
+
+```
+<% if (locals.user.acronym) { %>
+    <a href="/user">'<%= user.acronym %>' profile</a> |
+    <a href="/user/logout">Logout</a> |
+<% } else { %>
+    <a href="/user/login">Login</a> |
+<% } %>
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="center">
+<figure>
+    <img src="img/login.png" width="100%">
+    <figcaption>Show different content depending on the user is loggedin or not.</figcaption>
+</figure>
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="center">
+<figure>
+    <img src="img/login_success.png" width="100%">
+    <figcaption>Show different content depending on the user is loggedin or not.</figcaption>
+</figure>
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Logout
+
+* Unset the session
+
+```
+controller.logout = (req, res) => {
+    req.session.user = null
+    res.redirect('/user/home')
+}
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Protect routes
+
+* Only admins can access `/admin`, check through middleware
+
+```
+router.get('/', controller.isAdmin, controller.home)
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Protect routes...
+
+* If not admin then 403 Forbidden
+
+```
+controller.isAdmin = (req, res, next) => {
+    if (res.data.user.role === 'admin') {
+        next()
+    } else {
+        res.send(403)
+    }
+}
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Summary
+
+* Express
+* Session
+* Flash messages
+* Authentication
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# The end
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+</script>
+
+</html>

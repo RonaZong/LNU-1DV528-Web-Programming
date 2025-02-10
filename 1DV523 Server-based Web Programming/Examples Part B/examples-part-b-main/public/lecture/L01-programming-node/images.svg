@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01, custom)"
+   sodipodi:docname="images.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.1893044"
+     inkscape:cx="354.82926"
+     inkscape:cy="323.71864"
+     inkscape:window-width="1452"
+     inkscape:window-height="455"
+     inkscape:window-x="1907"
+     inkscape:window-y="308"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g1039" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:9.87777px;font-family:Z003;-inkscape-font-specification:'Z003, Normal';fill:#000000;stroke-width:0.1"
+       x="30.001835"
+       y="26.040541"
+       id="text256"
+       inkscape:export-filename="../d85279a6/node-system-overview.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         sodipodi:role="line"
+         id="tspan254"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.1"
+         x="30.001835"
+         y="26.040541">The Node.js System Overview</tspan></text>
+    <g
+       id="g1031"
+       transform="translate(-7.7355784,-12.335781)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+         id="rect468"
+         width="54.005413"
+         height="33.363335"
+         x="27.492569"
+         y="49.197704" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+         x="40.888008"
+         y="67.241905"
+         id="text1026"><tspan
+           sodipodi:role="line"
+           id="tspan1024"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1"
+           x="40.888008"
+           y="67.241905">Application</tspan></text>
+    </g>
+    <g
+       id="g1039"
+       transform="translate(48.841702,-12.335781)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+         id="rect1033"
+         width="54.005413"
+         height="33.363335"
+         x="27.492569"
+         y="49.197704" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+         x="40.888008"
+         y="67.241905"
+         id="text1037"><tspan
+           sodipodi:role="line"
+           id="tspan1035"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1"
+           x="40.888008"
+           y="67.241905">Application</tspan></text>
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.100368;stroke-opacity:1"
+         id="rect1132"
+         width="176.618"
+         height="141.03477"
+         x="-33.89922"
+         y="23.723036" />
+    </g>
+    <g
+       id="g1047"
+       transform="translate(105.41898,-12.335781)">
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+         id="rect1041"
+         width="54.005413"
+         height="33.363335"
+         x="27.492569"
+         y="49.197704" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+         x="40.888008"
+         y="67.241905"
+         id="text1045"><tspan
+           sodipodi:role="line"
+           id="tspan1043"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1"
+           x="40.888008"
+           y="67.241905">Application</tspan></text>
+    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.126858;stroke-opacity:1"
+       id="rect1063"
+       width="167.50732"
+       height="75.625565"
+       x="19.581543"
+       y="72.53759" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+       x="24.417046"
+       y="81.259216"
+       id="text1067"><tspan
+         sodipodi:role="line"
+         id="tspan1065"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1"
+         x="24.417046"
+         y="81.259216">Node.js</tspan></text>
+    <g
+       id="g1087"
+       transform="translate(-1.7919283,42.247998)">
+      <g
+         id="g1106"
+         transform="translate(22.668376,-15.769576)">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+           id="rect1081"
+           width="54.005413"
+           height="33.363335"
+           x="27.492569"
+           y="49.197704" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+           x="28.935072"
+           y="67.241905"
+           id="text1085"><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1"
+             x="28.935072"
+             y="67.241905"
+             id="tspan1093">V8 JavaScript Engine</tspan></text>
+      </g>
+      <g
+         id="g1111"
+         transform="translate(22.825916,-16.051204)">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+           id="rect1097"
+           width="54.005413"
+           height="33.363335"
+           x="84.976837"
+           y="49.479332" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+           x="100.84293"
+           y="68.002228"
+           id="text1101"><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1"
+             x="100.84293"
+             y="68.002228"
+             id="tspan1099">Node API</tspan></text>
+      </g>
+      <g
+         id="g1130"
+         transform="translate(22.754175,-15.875004)">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.14366;stroke-opacity:1"
+           id="rect1113"
+           width="111.60356"
+           height="33.319675"
+           x="27.4286"
+           y="85.008942" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:none;stroke:#000000;stroke-width:0.1;stroke-opacity:1"
+           x="61.73608"
+           y="96.857712"
+           id="text1117"><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1"
+             x="61.73608"
+             y="96.857712"
+             id="tspan1115">Asynchronous I/O</tspan><tspan
+             sodipodi:role="line"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1"
+             x="61.73608"
+             y="109.20493"
+             id="tspan1124">Event queue &amp; loop</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  mongosh:
+    build: .
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
+volumes:
+  mongodata:

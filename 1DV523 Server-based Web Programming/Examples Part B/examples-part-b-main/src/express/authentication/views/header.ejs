@@ -1,0 +1,18 @@
+<h1>Work with login</h1>
+
+<nav>
+    <a href="/user/home">Introduction</a> |
+    <a href="/admin">Admin area</a> |
+    <a href="/user/session">Debug session</a> |
+    <a href="/user/data">Debug data</a> |
+    <a href="/user/hash">Hash a password</a> |
+    <br>
+    <% if (locals.user.acronym) { %>
+        <a href="/user">'<%= user.acronym %>' profile</a> |
+        <a href="/user/logout">Logout</a> |
+    <% } else { %>
+        <a href="/user/login">Login</a> |
+    <% } %>
+</nav>
+
+<%- include('flash') -%>

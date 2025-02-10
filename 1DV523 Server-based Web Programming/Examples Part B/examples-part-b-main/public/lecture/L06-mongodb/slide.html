@@ -1,0 +1,442 @@
+<!doctype html>
+<html class="theme-5">
+<meta charset="utf-8" />
+<link href="../html-slideshow.bundle.min.css" rel="stylesheet" />
+<link href="../style.css" rel="stylesheet" />
+<script src="https://dbwebb.se/cdn/js/html-slideshow_v1.1.0.bundle.min.js"></script>
+
+<title>MongoDB</title>
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# MongoDB
+## NoSQL JSON document object database
+### Mikael Roos
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Agenda
+
+* MongoDB
+* mongosh
+* Atlas
+* Mongoose
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# MongoDB
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Pitch 
+
+> The developer data platform that provides the services and tools necessary to build distributed applications fast, at the performance and scale users demand.
+
+* Maintained by MongoDB Inc
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Database
+
+* Document driven database
+* Save JSON documents
+* Community/Enterprise edition
+* Atlas as cloud edition
+* Tools and utilities
+* NoSQL
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Birth 
+
+> At the Internet advertising company DoubleClick (now owned by Google), the team developed and used many custom data stores to work around the shortcomings of existing databases. The business served 400,000 ads per second, but often struggled with both scalability and agility. Frustrated, the team was inspired to create a database that tackled the challenges it faced at DoubleClick.
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# History 
+
+* 2007 development started for a "platform as a service" product
+* 2009 shifted to opensource development with commercial support
+* MongoDB global company with headquarter in New York and Dublin/Ireland
+* Listed on Nasdaq
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Versions 
+
+* 2.0 (2011)
+* 3.0 (2015)
+* 4.0 (2018) Transactions
+* 5.0 (2021)
+* 6.0 (2022)
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Traditional database 
+
+Classic features supported by MongoDB
+
+* Indexing
+* Transactions
+* Aggregation
+* Replication
+* Load balancing
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Features
+
+More features, not so related to classical relational datababases
+
+* File storage (grid file system)
+
+> MongoDB can be used as a file system, called GridFS.
+
+* Server-side JavaScript execution
+
+> JavaScript can be used in queries, aggregation functions, and sent directly to the database to be executed.
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Features...
+
+* Capped collections
+
+> MongoDB supports fixed-size collections called capped collections. This type of collection maintains insertion order and, once the specified size has been reached, behaves like a circular queue.
+
+* Ad-hoc queries
+
+> MongoDB supports field, range query, and regular-expression searches. Queries can return specific fields of documents and also include user-defined JavaScript functions.
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# Usage
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# MongoDb
+
+* Install locally or run in docker
+* With or without authentication
+* Default on port 27017
+
+```
+docker-compose up -d mongodb
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# MongoDB docker
+
+```
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    volumes:
+      - mongodata:/data/db
+
+volumes:
+  mongodata:
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Connection string
+
+* Data source name (DSN)
+
+```
+mongodb://<user>:<pass>@<host>:<port>/<database>?<connection options>
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# mongosh
+
+* Mongo Shell, terminal client
+
+```
+$ mongosh mongodb://mongo/test
+Current Mongosh Log ID: 63e2a6fef62b105911744c27
+Connecting to:          mongodb://mongo/test?directConnection=true&appName=mongosh+1
+Using MongoDB:          6.0.4
+Using Mongosh:          1.6.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+test> show databases
+admin   100.00 KiB
+config   72.00 KiB
+local    72.00 KiB
+test> 
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Atlas
+
+* Database as a (cloud) service
+* Free version
+* Easy to use
+* No need for installation
+* (Do not commit the connection string)
+
+```
+mongodb+srv://user:<password>@
+    cluster.mongodb.net/
+        ?retryWrites=true&w=majority
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Mongoose
+
+> "elegant mongodb object modeling for node.js"
+
+* npm install mongoose
+
+```
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/test');
+
+const Cat = mongoose.model('Cat', { name: String });
+
+const kitty = new Cat({ name: 'Zildjian' });
+await kitty.save()
+console.log('meow');
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Mongoose...
+
+* Schema
+* Models
+* Documents
+* Collections
+* Queries
+* CRUD
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Mongoose schema
+
+```
+const { Schema } = mongoose;
+
+const blogSchema = new Schema({
+  title:  String, // String is shorthand for {type: String}
+  author: String,
+  body:   String,
+  comments: [{ body: String, date: Date }],
+  date: { type: Date, default: Date.now },
+  hidden: Boolean,
+  meta: {
+    votes: Number,
+    favs:  Number
+  }
+});
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Mongoose model
+
+> To use our schema definition, we need to convert our blogSchema into a Model we can work with.
+
+```
+const Blog = mongoose.model('Blog', blogSchema);
+// ready to go!
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Mongoose statics
+
+* Add static functions to your model
+
+```
+// define a schema
+const animalSchema = new Schema({ name: String, type: String },
+{
+    // Assign a function to the "statics" object of our animalSchema
+    // through schema options.
+    statics: {
+        findByName(name) {
+            return this.find({ name: new RegExp(name, 'i') });
+        }
+    }
+});
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Mongoose ids
+
+* By default, Mongoose adds an _id property to your schemas
+
+```
+const Model = mongoose.model('Test', schema);
+
+const doc = new Model();
+doc._id instanceof mongoose.Types.ObjectId; // true
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Mongoose helpers
+
+```
+Model.deleteMany()
+Model.deleteOne()
+Model.find()
+Model.findById()
+Model.findByIdAndDelete()
+Model.findOne()
+Model.findOneAndDelete()
+Model.replaceOne()
+Model.updateMany()
+Model.updateOne()
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# More
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Security 
+
+* Default security configuration of MongoDB, allowing anyone to have full access to the database
+* Data stolen and have received critiscism for that
+* Lead product security officer claims "we are on to it" (2018)
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Technical 
+
+* Relational databases versus NoSQL
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Alternatives 
+
+* Apache Cassandra
+* Redis
+* OrientDB
+* CouchDB
+* RethinkDB
+* Amazon DocumentDB
+* Azure Cosmos DB
+* and more...
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Summary
+
+* MongoDB
+* mongosh
+* Atlas
+* Mongoose
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# The end
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+</script>
+
+</html>

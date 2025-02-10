@@ -1,0 +1,11 @@
+<h1>Login</h1>
+
+{{#if flash}}
+<p style="padding: 1em; background-color: #ccf">{{ flash }}</p>
+{{/if}}
+
+<form method=post>
+    <p><input type="text" name="user" value=""></p>
+    <p><input type="password" name="password" value=""></p>
+    <p><input type="submit" name="doit" value="Login"></p>
+</form>

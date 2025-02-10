@@ -1,0 +1,15 @@
+{
+  "doe": {
+    "name": "John/Jane Doe",
+    "acronym": "doe",
+    "plainPassword": "doe",
+    "bcryptPassword": "$2b$10$dP.ylK3qPmDc8ddeIi9V7Old4nlUsmuyE7U4v8MN22pm1npPXsO6O"
+  },
+  "admin": {
+    "name": "Admin Admin",
+    "acronym": "admin",
+    "role": "admin",
+    "plainPassword": "admin",
+    "bcryptPassword": "$2b$10$/SIO8Jln047tc6DEf8kDI.pEZetw3qo7SbVWNl96AHtdy7ydbGs16"
+  }
+}
