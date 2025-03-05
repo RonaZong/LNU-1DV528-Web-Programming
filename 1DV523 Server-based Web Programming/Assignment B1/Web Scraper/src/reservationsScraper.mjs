@@ -1,41 +1,59 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+/**
+ * Scrape reservations from the restaurant website.
+ *
+ * @param {String} url The URL of the restaurant website.
+ * @param {String} username The username for login.
+ * @param {String} password The password for login.
+ * @returns {Promise<Array>} The available reservations.
+ */
+
 export async function scrapeReservations(url, username, password) {
-  const response = await axios.get(url);
-  const $ = cheerio.load(response.data);
-  // Log the dinner response data for debugging
-  console.log(`Dinner response data for ${url}:`, response.data);
+  // Log in to the restaurant website
+  const loginResponse = await axios.post(`${url}/login`, 
+    { username, password }, 
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      validateStatus: (status) => status >= 200 && status < 400,
+    }
+  );
 
-  // const loginResponse = await axios.post(`${url}/login`, qs.stringify({
-  //   username,
-  //   password,
-  // }), {
-  //   headers: {
-  //     'Content-Type': 'application/x-www-form-urlencoded',
-  //   },
-  //   maxRedirects: 0,
-  //   validateStatus: (status) => status >= 200 && status < 400,
-  // });
-  const loginResponse = await axios.post(`${url}/login`, {
-    username,
-    password,
-  }, {
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    maxRedirects: 0,
-    validateStatus: (status) => status >= 200 && status < 400,
-  });
-  console.log(loginResponse.data);
-
+  // Extract cookies from the login response
+  const cookies = loginResponse.headers['set-cookie'];
+  console.log(cookies)
   process.exit(1);
-  // const $ = cheerio.load(loginResponse.data);
-  // const cookies = loginResponse.headers['set-cookie'];
+  if (!cookies) {
+    throw new Error('Login failed, no cookies received.');
+  }
 
-  // const response = await axios.get(`${url}/reservations`, {
-  //   headers: { Cookie: cookies.join('; ') }
-  // });
+  // Extract the redirect URL from the login response
+  const bookingUrlMatch = loginResponse.data.match(/window\.location\.href\s*=\s*['"]([^'"]+)['"]/);
+  if (!bookingUrlMatch) {
+    throw new Error('Login failed, no redirect URL found.');
+  }
+  const bookingUrl = bookingUrlMatch[1];
 
-  // return response.data.reservations;
+  // Follow the redirect to the booking page
+  const bookingResponse = await axios.get(`${url}${bookingUrl}`, {
+    headers: {
+      'Cookie': cookies.join('; '),
+    },
+  });
+
+  // Load the booking page HTML
+  const $ = cheerio.load(bookingResponse.data);
+
+  // Extract available reservations
+  const reservations = [];
+  $('li.reservation').each((index, element) => {
+    const timeRange = $(element).text().trim().split(' - ');
+    reservations.push({ start: timeRange[0], end: timeRange[1] });
+  });
+
+  return reservations;
+  
 }

@@ -1,6 +1,13 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+/**
+ * Scrape available days from the calendar links.
+ *
+ * @param {Array} calendarLinks The array of calendar links to scrape available days from each user.
+ * @returns {Array} The array of common available days.
+ */
+
 export async function scrapeAvailableDays(calendarLinks) {
   const availableDays = {};
 

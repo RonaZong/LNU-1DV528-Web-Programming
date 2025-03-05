@@ -1,6 +1,13 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+/**
+ * Scrape links from the starting URL.
+ *
+ * @param {String} url The starting URL to scrape links from.
+ * @returns {Object} The scraped links.
+ */
+
 export async function scrapeLinks(url) {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);

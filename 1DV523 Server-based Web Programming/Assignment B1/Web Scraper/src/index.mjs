@@ -4,6 +4,13 @@ import { scrapeShowTimes } from './showTimesScraper.mjs';
 import { scrapeReservations } from './reservationsScraper.mjs';
 import { findRecommendations } from './recommendations.mjs';
 
+/**
+ * Main entry point of the web scraper application.
+ * 
+ * This script orchestrates the scraping of links, available days, showtimes, and reservations,
+ * and then finds recommendations based on the collected data.
+ */
+
 const startUrl = process.argv[2];
 
 if (!startUrl) {
@@ -29,10 +36,12 @@ if (!startUrl) {
     return;
   }
 
-// Start here
   console.log('Scraping possible reservations...OK');
   const reservations = await scrapeReservations(dinnerUrl, 'zeke', 'coys');
-  console.log(reservations);
+  if (reservations.length === 0) {
+    console.log('No available reservations found.');
+    return;
+  }
 
   console.log('Recommendations\n===============');
   const recommendations = findRecommendations(availableDays, movies, reservations);

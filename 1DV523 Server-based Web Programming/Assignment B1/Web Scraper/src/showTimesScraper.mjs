@@ -1,6 +1,14 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
+/**
+ * Scrape showtimes from movies.
+ *
+ * @param {String} url The URL of the cinema website.
+ * @param {Array} days The common available days for all users.
+ * @returns {Array} The array of movies.
+ */
+
 export async function scrapeShowTimes(url, days) {
   const movies = [];
 

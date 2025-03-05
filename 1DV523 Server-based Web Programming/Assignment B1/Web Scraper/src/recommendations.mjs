@@ -1,3 +1,12 @@
+/**
+ * Find recommendations based on available days, movies, and reservations.
+ *
+ * @param {Array} availableDays The list of available days.
+ * @param {Array} showTimes The list of showtimes.
+ * @param {Array} reservations The list of reservations.
+ * @returns {Array} The list of recommendations.
+ */
+
 export function findRecommendations(availableDays, movies, reservations) {
     const recommendations = [];
   
