@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function scrapeRestaurant(url, username, password) {
+export async function scrapeReservations(url, username, password) {
   const loginResponse = await axios.post(`${url}/login`, { username, password });
   const cookies = loginResponse.headers['set-cookie'];
 

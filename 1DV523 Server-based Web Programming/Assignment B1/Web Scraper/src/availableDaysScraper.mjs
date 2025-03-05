@@ -1,0 +1,39 @@
+import axios from 'axios';
+import * as cheerio from 'cheerio';
+
+export async function scrapeAvailableDays(calendarLinks) {
+  const availableDays = {};
+
+  for (const link of calendarLinks) {
+    const userResponse = await axios.get(link);
+    const $ = cheerio.load(userResponse.data);
+    // Log the user calendar response data for debugging
+    // console.log(`User Calendar response data for ${link}:`, userResponse.data)
+    // console.log(`HTML content for ${link}:`, userPage.html());
+
+    const days = [];
+    $('table tbody tr td').each((index, element) => {
+      const day = $(element).text().trim();
+      if (day === 'ok' || day === 'OK') {
+        if (index === 0) {
+          days.push('Friday');
+        };
+        if (index === 1) {
+          days.push('Saturday');
+        };
+        if (index === 2) {
+          days.push('Sunday');
+        };
+      };
+    });
+    availableDays[link] = days;
+    console.log(`Available days for ${link}:`, days);
+  }
+
+  const commonAvailableDays = ['Friday', 'Saturday', 'Sunday'].filter((day) =>
+    Object.values(availableDays).every((days) => days.includes(day))
+  );
+  console.log('Common available days:', commonAvailableDays);
+
+  return commonAvailableDays;
+}
