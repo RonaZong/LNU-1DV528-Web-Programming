@@ -15,7 +15,8 @@ export async function scrapeShowTimes(url, days) {
       console.log(`No value found for day: ${day}`);
       continue;
     }
-    console.log(`Day value for ${day}:`, dayValue);
+    // Log the day value for debugging
+    // console.log(`Day value for ${day}:`, dayValue);
 
     const movieOptions = $('#movie option');
     if (movieOptions.length === 0) {
@@ -40,11 +41,11 @@ export async function scrapeShowTimes(url, days) {
     const availableTimesResponse = await axios.get(`${url}/check?day=${movie.dayValue}&movie=${movie.movieValue}`);
     const availableTimesData = availableTimesResponse.data;
     // Log the movie response data for debugging
-    console.log(`Movie response data for ${movie.movieTitle} on ${movie.day}:`, availableTimesData);
+    // console.log(`Movie response data for ${movie.movieTitle} on ${movie.day}:`, availableTimesData);
     
     movie.availableTimes = availableTimesData.filter(movie => movie.status !== 0).map(movie => movie.time);
-    console.log(`Available times for ${movie.movieTitle} on ${movie.day}:`, movie.availableTimes);
   }
+  console.log('Available times for movies:', movies)
 
   return movies;
 }

@@ -18,7 +18,8 @@ export async function scrapeLinks(url) {
             links.dinnerUrl = new URL(href, url).href;
         }
     });
-    console.log('Links:', links);
+    // Log the links for debugging
+    // console.log('Links:', links);
 
     const calendarResponse = await axios.get(links.calendarUrl);
     const calendarPage = cheerio.load(calendarResponse.data);
@@ -32,7 +33,8 @@ export async function scrapeLinks(url) {
             calendarLinks.push(new URL(href, links.calendarUrl).href);
         }
     });
-    console.log('Calendar links:', calendarLinks);
+    // Log the calendar links for debugging
+    // console.log('Calendar links:', calendarLinks);
 
     return {
         ...links,

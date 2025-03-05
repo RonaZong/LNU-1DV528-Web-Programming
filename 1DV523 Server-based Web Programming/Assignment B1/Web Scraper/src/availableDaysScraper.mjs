@@ -4,8 +4,8 @@ import * as cheerio from 'cheerio';
 export async function scrapeAvailableDays(calendarLinks) {
   const availableDays = {};
 
-  for (const link of calendarLinks) {
-    const userResponse = await axios.get(link);
+  for (const calendarLink of calendarLinks) {
+    const userResponse = await axios.get(calendarLink);
     const $ = cheerio.load(userResponse.data);
     // Log the user calendar response data for debugging
     // console.log(`User Calendar response data for ${link}:`, userResponse.data)
@@ -26,9 +26,9 @@ export async function scrapeAvailableDays(calendarLinks) {
         };
       };
     });
-    availableDays[link] = days;
-    console.log(`Available days for ${link}:`, days);
+    availableDays[calendarLink] = days;
   }
+  console.log('Available Days:', availableDays);
 
   const commonAvailableDays = ['Friday', 'Saturday', 'Sunday'].filter((day) =>
     Object.values(availableDays).every((days) => days.includes(day))
