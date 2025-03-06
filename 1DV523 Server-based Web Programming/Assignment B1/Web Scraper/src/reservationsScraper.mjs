@@ -13,19 +13,21 @@ import * as cheerio from 'cheerio';
 export async function scrapeReservations(url, username, password) {
   // Log in to the restaurant website
   const loginResponse = await axios.post(`${url}/login`, 
-    { username, password }, 
+    new URLSearchParams({ username, password }), 
     {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      validateStatus: (status) => status >= 200 && status < 400,
+      // validateStatus: (status) => status >= 200 && status < 400,
     }
+
   );
+  console.log(loginResponse.data)
+  process.exit(1);
 
   // Extract cookies from the login response
   const cookies = loginResponse.headers['set-cookie'];
   console.log(cookies)
-  process.exit(1);
   if (!cookies) {
     throw new Error('Login failed, no cookies received.');
   }
@@ -54,6 +56,6 @@ export async function scrapeReservations(url, username, password) {
     reservations.push({ start: timeRange[0], end: timeRange[1] });
   });
 
-  return reservations;
+  // return reservations;
   
 }
