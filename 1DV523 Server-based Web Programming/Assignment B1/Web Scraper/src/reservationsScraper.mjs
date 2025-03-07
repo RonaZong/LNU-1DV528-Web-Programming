@@ -11,6 +11,11 @@ import * as cheerio from 'cheerio';
  */
 
 export async function scrapeReservations(url, username, password) {
+  // const response = await axios.get(url);
+  // const $ = cheerio.load(response.data);
+  // Log the dinner response data for debugging
+  // console.log(`Dinner response data for ${url}:`, response.data);
+
   // Log in to the restaurant website
   const loginResponse = await axios.post(`${url}/login`, 
     new URLSearchParams({ username, password }), 
@@ -18,37 +23,29 @@ export async function scrapeReservations(url, username, password) {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      // validateStatus: (status) => status >= 200 && status < 400,
+      maxRedirects: 0,
+      validateStatus: (status) => status >= 200 && status < 400,
     }
-
   );
-  console.log(loginResponse.data)
-  process.exit(1);
+  // Log the login response data for debugging
+  // console.log(loginResponse.data); //Found. Redirecting to login/booking
 
   // Extract cookies from the login response
   const cookies = loginResponse.headers['set-cookie'];
   console.log(cookies)
   if (!cookies) {
-    throw new Error('Login failed, no cookies received.');
+    throw new Error('Login failed, no cookies received.');  
   }
-
-  // Extract the redirect URL from the login response
-  const bookingUrlMatch = loginResponse.data.match(/window\.location\.href\s*=\s*['"]([^'"]+)['"]/);
-  if (!bookingUrlMatch) {
-    throw new Error('Login failed, no redirect URL found.');
-  }
-  const bookingUrl = bookingUrlMatch[1];
 
   // Follow the redirect to the booking page
-  const bookingResponse = await axios.get(`${url}${bookingUrl}`, {
+  const bookingResponse = await axios.get(`${url}/login/booking`, {
     headers: {
       'Cookie': cookies.join('; '),
     },
   });
-
-  // Load the booking page HTML
-  const $ = cheerio.load(bookingResponse.data);
-
+  // const $ = cheerio.load(bookingResponse.data);
+  console.log(bookingResponse.data)
+  
   // Extract available reservations
   const reservations = [];
   $('li.reservation').each((index, element) => {
