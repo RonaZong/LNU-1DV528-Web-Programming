@@ -43,7 +43,9 @@ export async function scrapeReservations(url, username, password) {
       'Cookie': cookies.join('; '),
     },
   });
-  // const $ = cheerio.load(bookingResponse.data);
+  const $ = cheerio.load(bookingResponse.data);
+
+  
   console.log(bookingResponse.data)
   
   // Extract available reservations
