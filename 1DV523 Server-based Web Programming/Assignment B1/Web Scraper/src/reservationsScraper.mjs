@@ -32,7 +32,6 @@ export async function scrapeReservations(url, username, password) {
 
   // Extract cookies from the login response
   const cookies = loginResponse.headers['set-cookie'];
-  console.log(cookies)
   if (!cookies) {
     throw new Error('Login failed, no cookies received.');  
   }
