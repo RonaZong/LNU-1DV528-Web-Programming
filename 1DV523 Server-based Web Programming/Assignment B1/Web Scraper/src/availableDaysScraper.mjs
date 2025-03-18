@@ -35,12 +35,12 @@ export async function scrapeAvailableDays(calendarLinks) {
     });
     availableDays[calendarLink] = days;
   }
-  console.log('Available Days:', availableDays);
+  // console.log('Available Days:', availableDays);
 
   const commonAvailableDays = ['Friday', 'Saturday', 'Sunday'].filter((day) =>
     Object.values(availableDays).every((days) => days.includes(day))
   );
-  console.log('Common available days:', commonAvailableDays);
+  // console.log('Common available days:', commonAvailableDays);
 
   return commonAvailableDays;
 }

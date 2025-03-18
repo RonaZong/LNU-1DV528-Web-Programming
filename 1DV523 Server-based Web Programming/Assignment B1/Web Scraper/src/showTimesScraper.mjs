@@ -53,7 +53,7 @@ export async function scrapeShowTimes(url, days) {
     
     movie.availableTimes = availableTimesData.filter(movie => movie.status !== 0).map(movie => movie.time);
   }
-  console.log('Available times for movies:', movies)
+  // console.log('Available times for movies:', movies)
 
   return movies;
 }

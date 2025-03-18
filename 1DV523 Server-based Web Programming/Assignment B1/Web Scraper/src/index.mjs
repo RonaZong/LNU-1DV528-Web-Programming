@@ -37,13 +37,13 @@ if (!startUrl) {
   }
 
   console.log('Scraping possible reservations...OK');
-  const reservations = await scrapeReservations(dinnerUrl, 'zeke', 'coys');
+  const reservations = await scrapeReservations(dinnerUrl, 'zeke', 'coys', availableDays);
   if (reservations.length === 0) {
     console.log('No available reservations found.');
     return;
   }
 
-  console.log('Recommendations\n===============');
+  console.log('\nRecommendations\n===============');
   const recommendations = findRecommendations(availableDays, movies, reservations);
   recommendations.forEach(recommendation => console.log(`* ${recommendation}`));
 })();

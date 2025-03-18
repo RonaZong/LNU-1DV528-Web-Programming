@@ -10,7 +10,7 @@ import * as cheerio from 'cheerio';
  * @returns {Promise<Array>} The available reservations.
  */
 
-export async function scrapeReservations(url, username, password) {
+export async function scrapeReservations(url, username, password, days) {
   // const response = await axios.get(url);
   // const $ = cheerio.load(response.data);
   // Log the dinner response data for debugging
@@ -43,17 +43,20 @@ export async function scrapeReservations(url, username, password) {
     },
   });
   const $ = cheerio.load(bookingResponse.data);
-
-  
-  console.log(bookingResponse.data)
   
   // Extract available reservations
   const reservations = [];
-  $('li.reservation').each((index, element) => {
-    const timeRange = $(element).text().trim().split(' - ');
-    reservations.push({ start: timeRange[0], end: timeRange[1] });
+  $('input[type="radio"]').each((index, element) => {
+    const value = $(element).attr('value'); // e.g., "fri1416"
+    const day = value.slice(0, 3); // Extract the day prefix (e.g., "fri")
+    const timeSlot = $(element).next('span').text().trim(); // e.g., "14-16 Free"
+    if (days.map(d => d.slice(0, 3).toLowerCase()).includes(day) && timeSlot.includes('Free')) {
+      const [start, end] = timeSlot.split(' ')[0].split('-');
+      reservations.push({ day, start, end });
+    }
   });
 
-  // return reservations;
-  
+  // console.log('Available reservations:', reservations)
+
+  return reservations;
 }
