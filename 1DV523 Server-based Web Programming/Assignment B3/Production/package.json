@@ -1,0 +1,11 @@
+{
+  "name": "production",
+  "version": "1.0.0",
+  "description": "This project implements a Node.js application that integrates with GitLab Webhooks. It listens for issue-related events and provides real-time updates to connected clients via WebSockets. The application also fetches and displays a list of issues from a GitLab repository.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
