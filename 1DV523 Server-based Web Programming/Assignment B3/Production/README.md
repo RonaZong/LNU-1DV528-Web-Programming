@@ -22,3 +22,36 @@ This project implements a Node.js application that integrates with GitLab Webhoo
    ```bash
    git clone <repository-url>
    cd <repository-folder>
+
+2. Install PM2
+   ```bash
+   npm install pm2
+   ```
+
+3. Start your application in production mode
+   ```bash
+   pm2 start src/app.js --name gitlab-webhook-app --env production
+
+4. Save PM2 process list
+   ```bash
+   pm2 save
+
+5. Generate startup script (for server reboots)
+   ```bash
+   pm2 startup
+
+
+## 
+|   |   |
+|---|---|
+| IP address | 194.47.179.108 |
+| Domain name | cscloud9-108.lnu.se |
+| Username | ubuntu |
+| Open ports | 22, 80, 443 |
+| Guide | [Connect to a server](https://coursepress.lnu.se/manual/cscloud/education/03-connect-to-server) |
+
+## Connect to the server using SSH (over VPN)
+   ````bash
+   ssh ubuntu@{HOST} -i the-ssh-key
+   ssh ubuntu@194.47.179.108 -i xz222bb-key-pair.pem
+
