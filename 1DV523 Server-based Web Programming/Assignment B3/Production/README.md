@@ -24,6 +24,7 @@ This project implements a Node.js application that integrates with GitLab Webhoo
 ###
 
 |             |                                                                                                 |
+| ----------- | ----------------------------------------------------------------------------------------------- |
 | IP address  | 194.47.179.108                                                                                  |
 | Domain name | cscloud9-108.lnu.se                                                                             |
 | Username    | ubuntu                                                                                          |
