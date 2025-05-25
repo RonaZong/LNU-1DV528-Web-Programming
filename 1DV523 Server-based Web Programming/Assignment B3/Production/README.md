@@ -152,13 +152,32 @@ https://pm2.io/
 
 ### Step 7 - Getting the code to the server
 
-scp -r \* ubuntu@194.47.177.216:/var/www/snippet-app/
+```bash
+ssh -T git@gitlab.lnu.se
+scp -r \* ubuntu@cscloud9-108.lnu.se:/var/www/snippet-app/
+```
 
 ### Step 8 - Executing docker containers at the server (OPTIONAL)
 
 ```bash
-ssh -T git@gitlab.lnu.se
-ssh -T ubuntu@xz222bb-server
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+sudo usermod -aG docker ubuntu
+sudo systemctl restart docker
+docker run -d -p 27017:27017 --name mongodb mongo:4.4.3
+```
+
+### Step 9 - Troubleshooting
+
+```bash
+systemclt reload nginx
+systemctl restart nginx
+pm2 logs --lines 100
+docker ps
+pm2 restart {ID}
 
 ```
 
