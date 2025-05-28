@@ -73,7 +73,8 @@ nslookup 194.47.179.108
 curl http://localhost
 
 # Location of nginx configuration files
-/etc/nginx/nginx.conf # Location of global config file
+/etc/nginx/nginx.conf
+# Location of global config file
 /etc/nginx/sites-enabled/default # Location of default server block config file.
 
 sudo nano /etc/nginx/conf.d/cscloud9-108.lnu.se.conf
@@ -81,30 +82,57 @@ sudo nano /etc/nginx/conf.d/cscloud9-108.lnu.se.conf
 
 ```code
 server {
-   listen 80;
-   listen [::]:80;
 
-   server_name cscloud9-108.lnu.se;
-   index index.html;
+        server_name cscloud9-108.lnu.se;
+        index index.html;
 
-   root /var/www/html;
+        root /var/www/html;
 
-   location / {
-            try_files $uri $uri/ =404;
-   }
+        location / {
+                try_files $uri $uri/ =404;
+        }
 
-   location /crud {
-      proxy_pass http://localhost:5050/;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection 'upgrade';
-      proxy_set_header Host $host;
-      proxy_set_header X-Real-IP $remote_addr;               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto $scheme;
-      proxy_set_header X-Forwarded-Host $host;
-      proxy_set_header X-Forwarded-Port $server_port;
-   }
+
+        location /crud {
+                proxy_pass http://localhost:5050;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header X-Forwarded-Host $host;
+                proxy_set_header X-Forwarded-Port $server_port;
+        }
+
+        location /express/ {
+                proxy_pass http://localhost:5001/;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+        }
+
+    listen [::]:443 ssl ipv6only=on http2; # managed by Certbot
+    listen 443 ssl http2; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/cscloud9-108.lnu.se/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/cscloud9-108.lnu.se/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
 }
+server {
+    if ($host = cscloud9-108.lnu.se) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+        listen 80;
+        listen [::]:80;
+
+        server_name cscloud9-108.lnu.se;
+    return 404; # managed by Certbot
+
 ```
 
 ```bash
@@ -140,7 +168,7 @@ sudo certbot renew --dry-run
 sudo npm i pm2 -g
 
 // Run "npm start" with port set to 5001
-PORT=5001 pm2 start npm --name express-app:5001 -- start
+PORT=5001 pm2 start npm --name B3-Production:5001 -- start
 PORT=5002 pm2 start app.js
 pm2 start api.js -i 4
 pm2 list
@@ -154,7 +182,7 @@ https://pm2.io/
 
 ```bash
 ssh -T git@gitlab.lnu.se
-scp -r \* ubuntu@cscloud9-108.lnu.se:/var/www/snippet-app/
+scp -r \* ubuntu@cscloud9-108.lnu.se:/var/www/B3-Production/
 ```
 
 ### Step 8 - Executing docker containers at the server (OPTIONAL)

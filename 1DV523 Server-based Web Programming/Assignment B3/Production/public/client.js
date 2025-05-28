@@ -1,3 +1,8 @@
+// public/client.js
+socket.on('issue_update', () => {
+  fetchIssues(); // Re-fetch issues from the server
+});
+
 /**
  * Client-side JavaScript
  */
