@@ -1,0 +1,19 @@
+<%- include('header') -%>
+
+<h1>List users</h1>
+
+<% if (users.length == 0) { %>
+    <p>No users exists</p>
+<% } else { %>
+
+    <ul>
+    <% for (let i = 0; i < users.length; i++) { %>
+        <li><%= `${users[i].name} (${users[i].nick})` %></li>
+    <% } %>
+    </ul>
+<% } %>
+
+<h2>Debug</h2>
+<%- JSON.stringify(users, null, 2) %>
+
+<%- include('footer') -%>

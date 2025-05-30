@@ -2,9 +2,10 @@
   "name": "crud-code-snippets",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.mjs",
   "type": "module",
   "scripts": {
+    "start": "npx nodemon app.mjs",
     "http-server": "npx http-server -p 9001",
     "dev": "vite",
     "build": "vite build",
@@ -38,6 +39,12 @@
     "vite": "^6.3.5"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.10"
   }
 }

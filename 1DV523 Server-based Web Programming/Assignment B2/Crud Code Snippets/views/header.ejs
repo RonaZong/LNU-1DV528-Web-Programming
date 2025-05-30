@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Snippets</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Code Snippets</h1>
+      <nav>
+        <a href="/snippets">All Snippets</a>
+        <% if (locals.userId) { %>
+        <a href="/snippets/create">Create Snippet</a>
+        <a href="/auth/logout">Logout</a>
+        <% } else { %>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/register">Register</a>
+        <% } %>
+      </nav>
+    </header>
+
+    <% if (locals.success && locals.success.length) { %>
+    <div class="flash success"><%= locals.success %></div>
+    <% } %> <% if (locals.error && locals.error.length) { %>
+    <div class="flash error"><%= locals.error %></div>
+    <% } %>
+
+    <main></main>
+  </body>
+</html>
