@@ -1,4 +1,4 @@
-# Web Scraper Assignment
+# B1 Web Scraper
 
 ## Description
 

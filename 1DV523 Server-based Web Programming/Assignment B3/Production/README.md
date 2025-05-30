@@ -1,12 +1,10 @@
-# B3 Production
+# B3 Production Server with Real-Time Web
 
-## Production Server with Real-Time Web
-
-### Project Overview
+## Project Overview
 
 This project implements a Node.js application that integrates with GitLab Webhooks. It listens for issue-related events and provides real-time updates to connected clients via WebSockets. The application also fetches and displays a list of issues from a GitLab repository.
 
-### Features
+## Features
 
 - Fetches issues from a GitLab repository using the GitLab REST API.
 - Real-time updates for issue events using WebSockets.
@@ -14,14 +12,14 @@ This project implements a Node.js application that integrates with GitLab Webhoo
 - Reverse proxy setup with Nginx for production.
 - HTTPS support for secure communication.
 
-### Prerequisites
+## Prerequisites
 
 - Node.js (v16 or later)
 - GitLab account with a repository and API access token
 - Nginx installed on the production server
 - PM2 for process management
 
-###
+##
 
 |             |                                                                                                 |
 | ----------- | ----------------------------------------------------------------------------------------------- |
@@ -31,7 +29,7 @@ This project implements a Node.js application that integrates with GitLab Webhoo
 | Open ports  | 22, 80, 443                                                                                     |
 | Guide       | [Connect to a server](https://coursepress.lnu.se/manual/cscloud/education/03-connect-to-server) |
 
-### Step 1 - Connect to the server using SSH (over VPN)
+## Step 1 - Connect to the server using SSH (over VPN)
 
 ```bash
 # Login using ssh key file
@@ -40,7 +38,7 @@ ssh ubuntu@194.47.179.108 -i xz222bb-key-pair.pem
 ssh ubuntu@cscloud9-108.lnu.se -i xz222bb-key-pair.pem
 ```
 
-### Step 2 - Update, Upgrade and Install Node, NPM and Git
+## Step 2 - Update, Upgrade and Install Node, NPM and Git
 
 ```bash
 # Update and upgrade system
@@ -54,7 +52,7 @@ sudo apt install -y nodejs
 sudo apt-get install git
 ```
 
-### Step 3 - Install and Configure NGINX
+## Step 3 - Install and Configure NGINX
 
 ```bash
 # Install Nginx
@@ -149,7 +147,7 @@ http.createServer((req, res) => {
 }).listen(PORT)
 ```
 
-### Step 4 - Add TLS (HTTPS)
+## Step 4 - Add TLS (HTTPS)
 
 ```bash
 sudo snap install core; sudo snap refresh core
@@ -160,9 +158,9 @@ sudo certbot renew --dry-run
 
 ```
 
-### Step 5 - Enable HTTP2
+## Step 5 - Enable HTTP2
 
-### Step 6 - Process Manager, PM2
+## Step 6 - Process Manager, PM2
 
 ```bash
 sudo npm i pm2 -g
@@ -178,14 +176,14 @@ pm2 startup
 https://pm2.io/
 ```
 
-### Step 7 - Getting the code to the server
+## Step 7 - Getting the code to the server
 
 ```bash
 ssh -T git@gitlab.lnu.se
 scp -r \* ubuntu@cscloud9-108.lnu.se:/var/www/B3-Production/
 ```
 
-### Step 8 - Executing docker containers at the server (OPTIONAL)
+## Step 8 - Executing docker containers at the server (OPTIONAL)
 
 ```bash
 sudo apt-get install ca-certificates curl
@@ -198,7 +196,7 @@ sudo systemctl restart docker
 docker run -d -p 27017:27017 --name mongodb mongo:4.4.3
 ```
 
-### Step 9 - Troubleshooting
+## Step 9 - Troubleshooting
 
 ```bash
 systemclt reload nginx
@@ -209,7 +207,7 @@ pm2 restart {ID}
 
 ```
 
-### Installation
+## Installation
 
 1. Clone the repository:
 
