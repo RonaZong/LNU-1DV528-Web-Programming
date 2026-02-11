@@ -9,6 +9,8 @@
 2. Install dependencies: `npm install`
 3. Create `.env` file using `.env.example`
 4. Start MongoDB: `mongod` (or use Docker)
+mongosh "mongodb://localhost:27017"
+
 5. Start application: `npm start`
 
 ## Features

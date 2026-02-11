@@ -1,0 +1,28 @@
+<%- include('../partials/header') -%>
+
+<h2>All Code Snippets</h2>
+
+<% if (snippets.length === 0) { %>
+  <p>No snippets found. Create one!</p>
+<% } else { %>
+  <ul>
+    <% snippets.forEach(snippet => { %>
+      <li>
+        <h3><%= snippet.title %></h3>
+        <pre><code><%= snippet.code %></code></pre>
+        <p>By: <%= snippet.user.username %></p>
+        
+        <% if (locals.userId && locals.userId.equals(snippet.user._id)) { %>
+          <div class="actions">
+            <a href="/snippets/<%= snippet.id %>/edit">Edit</a>
+            <form action="/snippets/<%= snippet.id %>/delete" method="POST">
+              <button type="submit">Delete</button>
+            </form>
+          </div>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<%- include('../partials/footer') -%>

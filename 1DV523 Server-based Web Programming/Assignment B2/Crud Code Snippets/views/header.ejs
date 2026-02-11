@@ -22,11 +22,15 @@
     </header>
 
     <% if (locals.success && locals.success.length) { %>
-    <div class="flash success"><%= locals.success %></div>
-    <% } %> <% if (locals.error && locals.error.length) { %>
-    <div class="flash error"><%= locals.error %></div>
+      <div class="flash success">
+        <%= locals.success %>
+      </div>
+    <% } %> 
+    
+    <% if (locals.error && locals.error.length) { %>
+      <div class="flash error">
+        <%= locals.error %>
+      </div>
     <% } %>
 
-    <main></main>
-  </body>
-</html>
+    <main>

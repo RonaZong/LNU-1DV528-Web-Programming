@@ -1,0 +1,19 @@
+<%- include('../partials/header') -%>
+
+<h2>Edit Snippet</h2>
+
+<form method="POST" action="/snippets/<%= snippet.id %>">
+  <div>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="<%= snippet.title %>" required>
+  </div>
+  
+  <div>
+    <label for="code">Code:</label>
+    <textarea id="code" name="code" rows="10" required><%= snippet.code %></textarea>
+  </div>
+  
+  <button type="submit">Update Snippet</button>
+</form>
+
+<%- include('../partials/footer') -%>
