@@ -7,6 +7,10 @@ import { QuizApp } from '../apps/Quiz.js';
  * @module pwd/WindowManager
  */
 
+/**
+ * Creates and configures application windows.
+ * @class
+ */
 export class WindowManager {
     /**
      * Creates a new window based on the application type
@@ -20,6 +24,7 @@ export class WindowManager {
         case 'memory': {
             const game = new MemoryGame(4, 4);
             windowConfig = {
+                app: game,
                 title: 'Memory Game',
                 content: game.element,
                 width: 600,
@@ -30,6 +35,7 @@ export class WindowManager {
         case 'chat': {
             const chat = new ChatApp();
             windowConfig = {
+                app: chat,
                 title: 'Chat',
                 content: chat.element,
                 width: 400,
@@ -40,6 +46,7 @@ export class WindowManager {
         case 'custom': {
             const quiz = new QuizApp();
             windowConfig = {
+                app: quiz,
                 title: 'Quiz Game',
                 content: quiz.element,
                 width: 500,
@@ -51,7 +58,7 @@ export class WindowManager {
             return null;
         }
 
-        return new Window(
+        const appWindow = new Window(
             windowConfig.title,
             windowConfig.content,
             this.getRandomPosition('x'),
@@ -59,6 +66,9 @@ export class WindowManager {
             windowConfig.width,
             windowConfig.height
         );
+
+        appWindow.app = windowConfig.app;
+        return appWindow;
     }
 
     /**

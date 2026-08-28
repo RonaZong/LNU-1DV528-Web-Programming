@@ -2,14 +2,25 @@
  * @module apps/Quiz
  */
 
+let quizInstanceCounter = 0;
+
+/**
+ * Represents a Quiz App instance
+ * @class
+ */
 export class QuizApp {
+    /**
+     * Creates a new quiz application instance.
+     */
     constructor () {
         this.BASE_URL = 'https://courselab.lnu.se/quiz/question/1';
         this.currentQuestion = null;
         this.timer = null;
+        this.isDestroyed = false;
         this.timeLimit = 10;
         this.startTime = null;
         this.totalTime = 0;
+        this.instanceId = `quiz-${++quizInstanceCounter}`;
         this.nickname = this.getNickname();
         this.element = this.createQuizElement();
 
@@ -25,12 +36,16 @@ export class QuizApp {
     }
 
     promptNickname () {
-        const nickname = prompt('Enter your nickname for the quiz:');
-        if (nickname) {
-            localStorage.setItem('quiz-nickname', nickname);
-            this.nickname = nickname;
-            this.startQuiz();
-        }
+        const nickname =
+            prompt('Enter your nickname for the quiz:')?.trim();
+
+        this.nickname = nickname || 'Anonymous';
+        localStorage.setItem('quiz-nickname', this.nickname);
+
+        this.element.querySelector('.quiz-nickname').textContent =
+            `Player: ${this.nickname}`;
+
+        this.startQuiz();
     }
 
     createQuizElement () {
@@ -100,6 +115,7 @@ export class QuizApp {
         try {
             const response = await fetch(url);
             const question = await response.json();
+            if (this.isDestroyed) return;
             this.currentQuestion = question;
             this.displayQuestion(question);
             this.startTimer();
@@ -115,17 +131,26 @@ export class QuizApp {
 
         questionElement.textContent = question.question;
         optionsElement.innerHTML = '';
+        inputElement.value = '';
 
         // Check if question has alternatives
         if (question.alternatives) {
             inputElement.style.display = 'none';
             Object.entries(question.alternatives).forEach(([key, value]) => {
                 const option = document.createElement('div');
+                const optionId = `${this.instanceId}-${key}`;
+
                 option.className = 'quiz-option';
                 option.innerHTML = `
-                    <input type="radio" name="quiz-option" value="${key}" id="${key}">
-                    <label for="${key}">${value}</label>
+                    <input
+                        type="radio"
+                        name="${this.instanceId}-option"
+                        value="${key}"
+                        id="${optionId}"
+                    >
+                    <label for="${optionId}">${value}</label>
                 `;
+
                 optionsElement.appendChild(option);
             });
         } else {
@@ -172,7 +197,7 @@ export class QuizApp {
             });
 
             const result = await response.json();
-
+            if (this.isDestroyed) return;
             if (response.ok) {
                 if (result.nextURL) {
                     await this.fetchQuestion(result.nextURL);
@@ -259,5 +284,13 @@ export class QuizApp {
     showError (message) {
         const questionElement = this.element.querySelector('.quiz-question');
         questionElement.textContent = message;
+    }
+
+    /**
+     * Stops the active timer when the quiz window is closed.
+     */
+    destroy () {
+        this.isDestroyed = true;
+        this.clearTimer();
     }
 }

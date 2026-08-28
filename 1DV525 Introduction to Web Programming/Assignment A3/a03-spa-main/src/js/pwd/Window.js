@@ -15,6 +15,9 @@ export class Window {
     constructor (title, content, x = 20, y = 20, width = 400, height = 300) {
         this.isMaximized = false;
         this.isMinimized = false;
+        this.app = null;
+        this.handleMouseMove = null;
+        this.handleMouseUp = null;
         this.originalSize = { width, height };
         this.originalPos = { x, y };
 
@@ -82,7 +85,7 @@ export class Window {
             initialHeight = this.element.offsetHeight;
         });
 
-        document.addEventListener('mousemove', (e) => {
+        this.handleMouseMove = (e) => {
             if (isDragging && !this.isMaximized) {
                 e.preventDefault();
                 const currentX = e.clientX - initialX;
@@ -92,17 +95,22 @@ export class Window {
                 e.preventDefault();
                 const newWidth = initialWidth + (e.clientX - initialX);
                 const newHeight = initialHeight + (e.clientY - initialY);
+
                 this.setSize(
                     Math.max(300, newWidth),
                     Math.max(200, newHeight)
                 );
             }
-        });
+        };
 
-        document.addEventListener('mouseup', () => {
+        document.addEventListener('mousemove', this.handleMouseMove);
+
+        this.handleMouseUp = () => {
             isDragging = false;
             isResizing = false;
-        });
+        };
+
+        document.addEventListener('mouseup', this.handleMouseUp);
 
         closeBtn.addEventListener('click', () => this.close());
         maximizeBtn.addEventListener('click', () => this.maximize());
@@ -182,9 +190,23 @@ export class Window {
      * Closes the window
      */
     close () {
+        document.removeEventListener(
+            'mousemove',
+            this.handleMouseMove
+        );
+        document.removeEventListener(
+            'mouseup',
+            this.handleMouseUp
+        );
+
+        if (this.app?.destroy) {
+            this.app.destroy();
+        }
+
         if (this.onClose) {
             this.onClose(this);
         }
+
         this.element.remove();
     }
 

@@ -1,10 +1,25 @@
+/**
+ * @module apps/Chat
+ */
+
+/**
+ * Represents the chat application.
+ * @class
+ */
 export class ChatApp {
+    /**
+     * Creates a new chat application instance.
+     */
     constructor () {
         this.API_KEY = 'eDBE76deU7L0H9mEBgxUKVR0VCnq0XBd';
         this.SERVER_URL = 'wss://courselab.lnu.se/message-app/socket';
         this.username = this.getUsername();
         this.messages = [];
         this.maxMessages = 20;
+        this.isDestroyed = false;
+        this.reconnectTimer = null;
+        this.handleUsernameChanged = null;
+        this.handleDocumentClick = null;
         this.currentChannel = this.getLastChannel() || 'my, not so secret, channel';
         this.emojiMap = {
             ':)': '😊',
@@ -37,14 +52,27 @@ export class ChatApp {
     }
 
     promptUsername () {
-        const username = prompt('Please enter your username for the chat:');
+        const username = prompt(
+            'Please enter your username for the chat:',
+            this.username || ''
+        )?.trim();
+
+        // Keep the current username if Change Username is cancelled.
+        if (!username && this.username) return;
+
         if (username) {
-            localStorage.setItem('chat-username', username);
             this.username = username;
         } else {
-            this.username = 'Anonymous-' + Math.floor(Math.random() * 1000);
-            localStorage.setItem('chat-username', this.username);
+            this.username =
+                'Anonymous-' + Math.floor(Math.random() * 1000);
         }
+
+        localStorage.setItem('chat-username', this.username);
+
+        // Synchronize all currently open Chat windows.
+        window.dispatchEvent(new CustomEvent('chat-username-changed', {
+            detail: this.username
+        }));
     }
 
     loadCachedMessages () {
@@ -68,7 +96,7 @@ export class ChatApp {
         container.innerHTML = `
             <div class="chat-header">
                 <div class="chat-user-info">
-                    <span>Logged in as: ${this.username}</span>
+                    <span class="chat-current-user"></span>
                     <button class="chat-change-username">Change Username</button>
                 </div>
                 <div class="chat-channel-selector">
@@ -106,9 +134,7 @@ export class ChatApp {
             </div>
         `;
 
-        // // Display cached messages
-        // this.messages.forEach(msg => this.displayMessage(msg));
-
+        container.querySelector('.chat-current-user').textContent = `Logged in as: ${this.username}`;
         this.setupEventListeners(container);
         return container;
     }
@@ -121,6 +147,13 @@ export class ChatApp {
         const emojiBtn = container.querySelector('.chat-emoji-btn');
         const emojiPicker = container.querySelector('.chat-emoji-picker');
         const codeBtn = container.querySelector('.chat-code-btn');
+
+        this.handleUsernameChanged = (event) => {
+            this.username = event.detail;
+            container.querySelector('.chat-current-user').textContent = `Logged in as: ${this.username}`;
+        };
+
+        window.addEventListener('chat-username-changed', this.handleUsernameChanged);
 
         const sendMessage = () => {
             const message = input.value.trim();
@@ -169,8 +202,6 @@ export class ChatApp {
 
         changeUsernameBtn.addEventListener('click', () => {
             this.promptUsername();
-            container.querySelector('.chat-header span').textContent =
-                `Logged in as: ${this.username}`;
         });
 
         channelSelect.value = this.currentChannel;
@@ -209,11 +240,16 @@ export class ChatApp {
         });
 
         // Close emoji picker when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!emojiBtn.contains(e.target) && !emojiPicker.contains(e.target)) {
+        this.handleDocumentClick = (e) => {
+            if (
+                !emojiBtn.contains(e.target) &&
+                !emojiPicker.contains(e.target)
+            ) {
                 emojiPicker.style.display = 'none';
             }
-        });
+        };
+
+        document.addEventListener('click', this.handleDocumentClick);
     }
 
     processMessage (message) {
@@ -240,11 +276,16 @@ export class ChatApp {
         messageElement.className = 'chat-message';
 
         const timestamp = new Date().toLocaleTimeString();
-        const formattedContent = this.formatMessageContent(message.data);
+        const formattedContent = this.formatMessageContent(
+            String(message.data ?? '')
+        );
+        const safeUsername = this.escapeHtml(
+            String(message.username ?? 'Anonymous')
+        );
 
         messageElement.innerHTML = `
             <span class="chat-timestamp">${timestamp}</span>
-            <span class="chat-username">${message.username}:</span>
+            <span class="chat-username">${safeUsername}:</span>
             <span class="chat-text">${formattedContent}</span>
         `;
 
@@ -253,6 +294,10 @@ export class ChatApp {
     }
 
     connectWebSocket () {
+        if (this.isDestroyed) return;
+
+        if (this.ws && (this.ws.readyState === WebSocket.CONNECTING || this.ws.readyState === WebSocket.OPEN)) return;
+
         try {
             // console.log('Connecting to WebSocket...'); // Debug log
             this.ws = new WebSocket(this.SERVER_URL);
@@ -288,9 +333,13 @@ export class ChatApp {
             };
 
             this.ws.onclose = () => {
-                // console.log('WebSocket connection closed'); // Debug log
+                if (this.isDestroyed) return;
+
                 this.displaySystemMessage('Disconnected from chat server');
-                setTimeout(() => this.connectWebSocket(), 5000);
+                this.reconnectTimer = setTimeout(
+                    () => this.connectWebSocket(),
+                    5000
+                );
             };
 
             this.ws.onerror = () => {
@@ -318,5 +367,44 @@ export class ChatApp {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
+    }
+
+    /**
+     * Releases the WebSocket connection and global event listeners.
+     */
+    destroy () {
+        this.isDestroyed = true;
+
+        if (this.reconnectTimer) {
+            clearTimeout(this.reconnectTimer);
+            this.reconnectTimer = null;
+        }
+
+        if (this.handleUsernameChanged) {
+            window.removeEventListener(
+                'chat-username-changed',
+                this.handleUsernameChanged
+            );
+        }
+
+        if (this.handleDocumentClick) {
+            document.removeEventListener(
+                'click',
+                this.handleDocumentClick
+            );
+        }
+
+        if (this.ws) {
+            this.ws.onopen = null;
+            this.ws.onmessage = null;
+            this.ws.onclose = null;
+            this.ws.onerror = null;
+
+            if (this.ws.readyState < WebSocket.CLOSING) {
+                this.ws.close();
+            }
+
+            this.ws = null;
+        }
     }
 }

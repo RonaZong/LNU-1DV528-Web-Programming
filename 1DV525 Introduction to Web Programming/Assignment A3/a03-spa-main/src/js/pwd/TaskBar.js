@@ -2,7 +2,14 @@
  * @module pwd/TaskBar
  */
 
+/**
+ * Represents the desktop taskbar and its open-window buttons.
+ * @class
+ */
 export class TaskBar {
+    /**
+     * Creates and attaches the taskbar.
+     */
     constructor () {
         this.element = this.createTaskBarElement();
         this.windows = new Map();

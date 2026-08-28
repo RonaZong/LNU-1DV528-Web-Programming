@@ -7,7 +7,7 @@ import { TaskBar } from './TaskBar.js';
 export class Desktop {
     /**
      * Creates a new Desktop instance
-     * @param {import('./WindowManager.js').WindowManager} windowManager - The window manager instance
+     * @param {object} windowManager - The window manager instance
      */
     constructor (windowManager) {
         this.desktop = document.getElementById('desktop');
