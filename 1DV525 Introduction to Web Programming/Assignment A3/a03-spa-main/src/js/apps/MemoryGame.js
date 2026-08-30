@@ -65,10 +65,13 @@ export class MemoryGame {
             <select class="memory-size">
                 <option value="2,2">2x2</option>
                 <option value="2,4">2x4</option>
-                <option value="4,4" selected>4x4</option>
+                <option value="4,4">4x4</option>
             </select>
             <span class="memory-attempts">Attempts: 0</span>
         `;
+
+        const sizeSelect = controls.querySelector('.memory-size');
+        sizeSelect.value = `${this.rows},${this.cols}`;
 
         const board = document.createElement('div');
         board.className = 'memory-board';

@@ -8,7 +8,27 @@
     flex-direction: column;
     min-width: 200px;
     min-height: 150px;
-    transition: all 0.3s ease;
+    transition:
+        left 0.2s ease,
+        top 0.2s ease,
+        width 0.2s ease,
+        height 0.2s ease,
+        transform 0.2s ease,
+        opacity 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.window.dragging,
+.window.resizing {
+    transition: none;
+}
+
+.window.dragging {
+    will-change: left, top;
+}
+
+.window.resizing {
+    will-change: width, height;
 }
 
 .window.focused {
@@ -33,8 +53,12 @@
     padding: 8px;
     background: #f0f0f0;
     border-bottom: 1px solid #ddd;
-    cursor: move;
+    cursor: grab;
     user-select: none;
+}
+
+.window.dragging .window-titlebar {
+    cursor: grabbing;
 }
 
 .window-controls {

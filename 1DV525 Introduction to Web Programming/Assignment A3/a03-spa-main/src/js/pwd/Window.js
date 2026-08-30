@@ -71,18 +71,23 @@ export class Window {
         let initialX, initialY, initialWidth, initialHeight;
 
         titlebar.addEventListener('mousedown', (e) => {
-            if (e.target === closeBtn || e.target === maximizeBtn || e.target === minimizeBtn) return;
+            if (e.button !== 0 || e.target === closeBtn || e.target === maximizeBtn || e.target === minimizeBtn) return;
+            e.preventDefault();
             isDragging = true;
             initialX = e.clientX - this.element.offsetLeft;
             initialY = e.clientY - this.element.offsetTop;
+            this.element.classList.add('dragging');
         });
 
         resizeHandle.addEventListener('mousedown', (e) => {
+            if (e.button !== 0) return;
+            e.preventDefault();
             isResizing = true;
             initialX = e.clientX;
             initialY = e.clientY;
             initialWidth = this.element.offsetWidth;
             initialHeight = this.element.offsetHeight;
+            this.element.classList.add('resizing');
         });
 
         this.handleMouseMove = (e) => {
@@ -108,6 +113,7 @@ export class Window {
         this.handleMouseUp = () => {
             isDragging = false;
             isResizing = false;
+            this.element.classList.remove('dragging', 'resizing');
         };
 
         document.addEventListener('mouseup', this.handleMouseUp);
@@ -171,7 +177,12 @@ export class Window {
      */
     minimize () {
         this.isMinimized = !this.isMinimized;
-        this.element.classList.toggle('minimized');
+        this.element.classList.toggle('minimized', this.isMinimized);
+
+        if (this.isMinimized) {
+            this.element.classList.remove('focused');
+        }
+
         if (this.onMinimize) {
             this.onMinimize(this);
         }
@@ -182,8 +193,14 @@ export class Window {
      */
     focus () {
         const windows = document.querySelectorAll('.window');
+
         windows.forEach(win => win.classList.remove('focused'));
+
         this.element.classList.add('focused');
+
+        if (this.onFocus) {
+            this.onFocus(this);
+        }
     }
 
     /**

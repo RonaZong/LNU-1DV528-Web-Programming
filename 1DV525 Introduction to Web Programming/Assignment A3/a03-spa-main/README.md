@@ -13,7 +13,7 @@ A browser-based desktop environment that allows you to run multiple applications
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v14 or higher)
+- Node.js (v18 or higher)
 - npm
 
 ### Installation

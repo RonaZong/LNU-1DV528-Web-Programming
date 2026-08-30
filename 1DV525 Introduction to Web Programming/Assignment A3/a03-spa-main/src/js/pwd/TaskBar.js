@@ -16,29 +16,61 @@ export class TaskBar {
         document.body.appendChild(this.element);
     }
 
+    /**
+     * Creates the taskbar element.
+     * @returns {HTMLElement} The taskbar element
+     * @private
+     */
     createTaskBarElement () {
         const taskbar = document.createElement('div');
         taskbar.className = 'taskbar';
         return taskbar;
     }
 
+    /**
+     * Adds a window button to the taskbar.
+     * @param {object} appWindow - The window instance
+     */
     addWindow (window) {
         const taskbarItem = document.createElement('div');
+        const title = window.getTitle();
+        
+        taskbarItem.type = 'button';
         taskbarItem.className = 'taskbar-item';
-        taskbarItem.textContent = window.element.querySelector('.window-title').textContent;
+        taskbarItem.textContent = title;
+        taskbarItem.title = title;
 
         taskbarItem.addEventListener('click', () => {
-            if (window.element.classList.contains('minimized')) {
+            if (window.isMinimized) {
                 window.minimize();
+                window.focus();
+                return;
             }
+            
+            if (window.element.classList.contains('focused')) {
+                window.minimize();
+                return;
+            }
+            
             window.focus();
         });
 
         this.element.appendChild(taskbarItem);
         this.windows.set(window, taskbarItem);
 
+        window.onFocus = () => {
+            this.windows.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            taskbarItem.classList.add('active');
+        };
+
         window.onMinimize = () => {
-            taskbarItem.classList.toggle('active');
+            taskbarItem.classList.toggle('minimized', window.isMinimized);
+            if (window.isMinimized) {
+                taskbarItem.classList.remove('active');
+            }
         };
 
         window.onClose = () => {

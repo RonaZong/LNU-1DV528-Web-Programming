@@ -13,6 +13,15 @@ import { QuizApp } from '../apps/Quiz.js';
  */
 export class WindowManager {
     /**
+     * Creates a new window manager.
+     */
+    constructor () {
+        this.nextX = 20;
+        this.nextY = 20;
+        this.positionOffset = 30;
+    }
+
+    /**
      * Creates a new window based on the application type
      * @param {string} appName - The name of the application to create
      * @returns {Window|null} The created window instance or null if app type is invalid
@@ -32,6 +41,7 @@ export class WindowManager {
             };
             break;
         }
+
         case 'chat': {
             const chat = new ChatApp();
             windowConfig = {
@@ -43,26 +53,33 @@ export class WindowManager {
             };
             break;
         }
+
         case 'custom': {
             const quiz = new QuizApp();
             windowConfig = {
                 app: quiz,
                 title: 'Quiz Game',
                 content: quiz.element,
-                width: 500,
-                height: 600
+                width: 600,
+                height: 700
             };
             break;
         }
+
         default:
             return null;
         }
 
+        const position = this.getNextPosition(
+            windowConfig.width,
+            windowConfig.height
+        );
+        
         const appWindow = new Window(
             windowConfig.title,
             windowConfig.content,
-            this.getRandomPosition('x'),
-            this.getRandomPosition('y'),
+            position.x,
+            position.y,
             windowConfig.width,
             windowConfig.height
         );
@@ -72,13 +89,39 @@ export class WindowManager {
     }
 
     /**
-     * Generates a random position for new windows
-     * @param {('x'|'y')} axis - The axis to generate position for
-     * @returns {number} The calculated position
+     * Calculates the next cascading window position.
+     * @param {number} width - The new window width
+     * @param {number} height - The new window height
+     * @returns {{x: number, y: number}} The next window position
      * @private
      */
-    getRandomPosition (axis) {
-        const max = axis === 'x' ? window.innerWidth - 300 : window.innerHeight - 300;
-        return Math.max(20, Math.random() * max);
+    getNextPosition (width, height) {
+        const margin = 20;
+        const taskbarHeight = 56;
+
+        const maxX = Math.max(
+            margin,
+            window.innerWidth - width - margin
+        );
+
+        const maxY = Math.max(
+            margin,
+            window.innerHeight - height - taskbarHeight
+        );
+
+        const position = {
+            x: Math.min(this.nextX, maxX),
+            y: Math.min(this.nextY, maxY)
+        };
+
+        this.nextX += this.positionOffset;
+        this.nextY += this.positionOffset;
+
+        if (this.nextX > maxX || this.nextY > maxY) {
+            this.nextX = margin;
+            this.nextY = margin;
+        }
+
+        return position;
     }
 }
