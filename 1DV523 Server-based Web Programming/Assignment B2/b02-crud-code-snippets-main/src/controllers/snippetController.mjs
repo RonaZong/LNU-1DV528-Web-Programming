@@ -14,6 +14,12 @@ export const showCreateForm = (req, res) => res.render('create')
 export const createSnippet = async (req, res, next) => {
   try {
     const { title, code } = req.body
+
+    if (typeof title !== 'string' || typeof code !== 'string' || title.trim().length === 0 || code.trim().length === 0) {
+      req.flash('error', 'Enter a title and code')
+      return res.redirect('/snippets/create')
+    }
+
     const snippet = new Snippet({
       title,
       code,
@@ -40,6 +46,12 @@ export const showEditForm = async (req, res, next) => {
 export const updateSnippet = async (req, res, next) => {
   try {
     const { title, code } = req.body
+
+    if (typeof title !== 'string' || typeof code !== 'string' || title.trim().length === 0 || code.trim().length === 0) {
+      req.flash('error', 'Enter a title and code')
+      return res.redirect(`/snippets/${req.params.id}/edit`)
+    }
+
     await Snippet.findByIdAndUpdate(req.params.id, { title, code }, { runValidators: true })
     req.flash('success', 'Snippet updated successfully')
     res.redirect('/snippets')
