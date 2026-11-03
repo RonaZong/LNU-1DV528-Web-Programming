@@ -1,0 +1,32 @@
+<!doctype html>
+
+<meta charset="utf8">
+<style>
+
+    main {
+        margin: 0 auto;
+        max-width: 700px;
+        background-color: #ccc;
+        padding: 0.5em;
+
+        min-height: 30em;
+    }
+
+</style>
+
+<main>
+<h1>Minimum height of a page</h1>
+
+<p>When you have pages of different heights, depending on whether some pages have more or less content, it is a good idea to always set a minimum height on a page. It simply looks better if all pages, regardless of content, have a reasonable height.</p>
+
+<p>It's easily done with CSS and one way to do it is to set 'min-height' on the element that contains the page's main content itself.</p>
+
+<pre>
+main {
+    min-height: 30em;
+}
+</pre>
+
+<p>The measurement 'em' corresponds to the size of a character and in the initial state it is 16 pixels large, but you can also see '20em' as 20 lines of text.</p>
+
+</main>

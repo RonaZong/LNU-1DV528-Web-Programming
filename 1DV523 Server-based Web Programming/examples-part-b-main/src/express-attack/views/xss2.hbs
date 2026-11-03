@@ -1,0 +1,18 @@
+<h1>XSS 2</h1>
+
+<p>Can you inject some JavaScript into this page?</p>
+
+<form>
+    <label>Enter a date and press enter:
+        <input type="text" name="date" value="{{ date }}">
+    </label>
+</form>
+
+<script>
+let date = new Date("{{{ date }}}")
+let day = date.getDay()
+console.log(date)
+console.log(day)
+</script>
+
+<p>It was a <script>document.write(day)</script> on the date {{ date }}.</p>

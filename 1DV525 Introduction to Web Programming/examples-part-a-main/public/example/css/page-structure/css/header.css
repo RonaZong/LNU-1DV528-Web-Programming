@@ -1,0 +1,32 @@
+.siteheader {
+  background-image: url("../img/starry-night.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.siteheader .title {
+  color: lime;
+
+  font-size: 36px;
+  padding-top: 24px;
+  text-shadow: 4px 4px 4px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.siteheader .logo {
+  padding: 16px 16px 32px;
+}
+
+.siteheader .row {
+  display: flex;
+  flex-direction: row;
+}
+
+.siteheader .row > .logo {
+  width: calc(100% * 1 / 4);
+}
+
+.siteheader .row > .title {
+  width: calc(100% * 3 / 4);
+}

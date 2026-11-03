@@ -1,0 +1,533 @@
+<!doctype html>
+<html class="theme-5">
+<meta charset="utf-8" />
+<link href="../html-slideshow.bundle.min.css" rel="stylesheet" />
+<link href="../style.css" rel="stylesheet" />
+<script src="https://dbwebb.se/cdn/js/html-slideshow_v1.1.0.bundle.min.js"></script>
+
+<title>JavaScript - Events</title>
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# JavaScript
+## Events
+### Mikael Roos
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Agenda
+
+* Events
+* Event listeners
+* Bubbling
+* Capture
+* Prevent default
+* Event object
+* Synthetic events
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Events
+
+* Actions or occurences that "happens" in your system
+* The system produces/signals/raises events
+* Each event can have one or several handlers attached to it
+* The event ends up in the message queue
+    * which is read by the event loop
+    * and executes the message with the attached handler
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Events
+
+* Related to what happens inside the browser window
+* Attached to a specific item
+    * An element
+    * A set of elements
+    * The HTML document
+    * The browser window
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Types of events
+
+* User selects, clicks, hovers an element
+* User chooses a key on the keyboard
+* User resizes or closes the browser window
+* A web page/request finish loading
+* Submitting a form
+* ... and more
+
+<p class="footnote">The event reference:<br>https://developer.mozilla.org/en-US/docs/Web/Events</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Click event
+
+* A button with a click event
+
+```
+<button id="colorButton">Change color</button>
+```
+
+```
+// A button click event
+const button = document.querySelector('#colorButton')
+const body = document.querySelector('body')
+
+button.addEventListener('click', () => {
+  body.style.backgroundColor = '#0f0' 
+})
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# More events
+
+* Add more events on the button
+
+```
+// More events on the button using the mouse
+button.addEventListener('dblclick', () => {
+  body.style.backgroundColor = '#000' 
+})
+
+button.addEventListener('focus', () => {
+  body.style.backgroundColor = '#f00' 
+})
+
+button.addEventListener('mouseover', () => {
+  body.style.backgroundColor = '#00f' 
+})
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Remove listener
+
+* Name the function to be able to remove the handler
+
+```
+// Remove event handlers
+function changeBackgroundColor() {
+  body.style.backgroundColor = '#fff' 
+}
+
+button.addEventListener('dblclick', changeBackgroundColor)
+
+button.removeEventListener('dblclick', changeBackgroundColor)
+```
+
+<p class="footnote">The element, the event and its callback.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Multiple event listeners
+
+* You can add several event handlers for the same event
+
+```
+myElement.addEventListener('click', functionA);
+myElement.addEventListener('click', functionB);
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event object
+
+* An event object is passed as the first argument to the handler
+
+```
+// Event objects
+function changeButtonColor(event) {
+  console.log(event)
+  event.target.style.backgroundColor = '#c0c'
+}
+
+button.addEventListener('dblclick', changeButtonColor)
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event object data
+
+* event.target reference to the element the event happened upon
+* event.type is the type of the event
+* More details like
+    * the position of the element and the event
+* Special props for some events, like the keyboard events has a event.key
+
+<p class="footnote">Print it out and view its detail in the console.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Keyboard event
+
+* Add events when the keyboard is pressed 
+    * keypress, keydown, keyup
+
+```
+// Keyboard events
+addEventListener('keypress', (event) => {
+  console.log(event.key + ':' + event.code)
+})
+```
+
+```
+a:KeyA
+s:KeyS
+d:KeyD
+```
+
+<p class="footnote">The event object contains details if the ctrl, alt, meta or shift key was pressed.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Prevent default
+
+* Some items have default handlers, you can prevent them from happening
+
+```
+<form>
+    <input type="text" name="textField">
+    <input type="submit" name="doit" value="Submit"> 
+</form>
+```
+
+```
+// Prevent the default event
+const form = document.querySelector('form')
+
+form.addEventListener('submit', (event) => {
+  console.log('The form is to be submitted')
+  event.preventDefault()
+})
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event bubbling
+
+* How browser handles events on nested elements
+* The submit button is within the form, but we added the eventlistener to the form?
+* What about a p in a div within another div?
+
+```
+<div class="outer">
+    <div class="inner">
+        <p id="content">The content</p>
+    </div>   
+</div>
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event bubbling...
+
+```
+// Event bubbling
+const content = document.querySelector('#content')
+const inner = document.querySelector('.inner')
+const outer = document.querySelector('.outer')
+
+content.addEventListener('click', (event) => {
+    console.log(event.target, event.currentTarget)
+})
+
+inner.addEventListener('click', (event) => {
+    console.log(event.target, event.currentTarget)
+})
+
+outer.addEventListener('click', (event) => {
+    console.log(event.target, event.currentTarget)
+})
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event bubbling...
+
+```
+// event.target versus event.currentTarget
+<p id=​"content">​The content​</p>​ <p id=​"content">​The content​</p>​
+<p id=​"content">​The content​</p>​ <div class=​"inner">​…​</div>​
+<p id=​"content">​The content​</p>​ <div class=​"outer">​…​</div>​
+```
+
+<p class="footnote">The event.target is the same, but the event bubbles up the nested element hierarchy showed by the event.currentTarget.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event bubbling...
+
+* You can stop the bubbling event
+* Prevent the event from bubbling up the nested elements
+
+```
+content.addEventListener('click', (event) => {
+    console.log(event)
+    console.log(event.target, event.currentTarget)
+    event.stopPropagation()
+})
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event capture
+
+* Like bubbling, but the opposite way, fire on the outermost element first
+    * `{capture: true}`
+
+```
+// Event capture
+const html = document.querySelector('html')
+
+html.addEventListener('click', (event) => {
+  console.log(`You clicked ${event.currentTarget.tagName}`)
+}, {capture: true})
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event delegation
+
+* Set the event handler on the parent element to handle all event on children
+* One handler to capture them all
+
+```
+<div class="container">
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+    <div class="tile"></div>
+</div>
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event delegation...
+
+* Event on the parent, but modify the actual target of the event
+
+```
+// Event delegation
+const container = document.querySelector('.container')
+
+container.addEventListener('click', (event) => {
+  event.target.style.backgroundColor = '#f0f'
+})
+```
+
+<p class="footnote">Each tile-div clicked gets its background color changed.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event reference
+
+* Animation - Web Animation API
+* Async fetch - Fetch API (and equal)
+* Clipboard - Clipboard API
+* Drag & Drop - HTML Drag and Drop API
+* Fullscren - Fullscreen API
+* Gamepad - Gamepad API
+* Sockets - WebSockets API
+* Touch - Touch Events API
+
+<p class="footnote">https://developer.mozilla.org/en-US/docs/Web/Events</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Event reference...
+
+* Virtual reality - WebXR Device API
+* RTC (real time communication) - WebRTC API
+* Server-sent events - Server sent events API
+* Speech - Web Speech API
+* Workers - Web Workers API (and more) 
+* Focus, Form, Gestures, History, Inputs, Media, Messaging, Network, Mouse, Keyboard, Pointer, SVG, Text selection
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Timers
+
+* Create timed events
+    * setTimeout(), clearTimeout()
+    * setInterval(), clearInterval()
+    * Event.timeStamp
+
+```
+<!-- Make the timer go from 0 to 100 in 10 seconds -->
+<meter min="0" max="100" low="25" high="75" value="0"></meter>
+<button id="start">Start timer</button>
+```
+
+<p class="footnote">Fill up the meter and update it with a regular interal.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Start the timer
+
+* The timer is started by a button
+
+```
+// Timer
+const meter = document.querySelector('meter')
+const start = document.querySelector('#start')
+
+start.addEventListener('click', (event) => {
+  console.log('Starting the timer')
+  fillTimedMeter(10 * 1000, 500)
+})
+```
+
+<p class="footnote">It seem like it all happens in the function fillTimedMeter().</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# setInterval
+
+* Manage a interval timer to both start and stop it, using a closure to save startTime
+
+```
+function fillTimedMeter (duration, interval) {
+    const startTime = new Date()
+
+    const intervalId = setInterval(() => {
+        const currentTime = new Date()
+
+        meter.value = (currentTime - startTime) / duration * 100
+
+        if (meter.value >= 100) {
+            clearInterval(intervalId)
+        }
+    }, interval)
+}
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Synthetic events
+
+* Create and trigger custom events
+* Define and fire your own events
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Synthetic events...
+
+```
+// Custom events
+const winnerEvent = new Event('winner')
+
+body.addEventListener('winner', (event) => {
+  body.style.backgroundColor = '#090'
+})
+
+body.dispatchEvent(winnerEvent)
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Summary
+
+* Events is an important building block of JavaScript
+* Events together with the event loop build an understanding on the programming model for JavaScript
+* Event listeners
+* Bubbling
+* Capture
+* Prevent default
+* Event object
+* Synthetic events
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# The end
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+</script>
+
+</html>

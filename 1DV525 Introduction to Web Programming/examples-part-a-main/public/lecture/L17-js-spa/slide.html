@@ -1,0 +1,389 @@
+<!doctype html>
+<html class="theme-5">
+<meta charset="utf-8" />
+<link href="../html-slideshow.bundle.min.css" rel="stylesheet" />
+<link href="../style.css" rel="stylesheet" />
+<script src="https://dbwebb.se/cdn/js/html-slideshow_v1.1.0.bundle.min.js"></script>
+
+<title>JavaScript - SPA</title>
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# JavaScript
+## Single page application (SPA) architecture
+### Mikael Roos
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Agenda
+
+* SPA as an application architecture
+* Pros and cons
+* Related techniques to build webapps
+* HTML API, useful for SPA
+    * Online/Offline
+    * WebSockets
+    * Server-sent events
+    * Web workers
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Types of webapps
+
+* Browser desktop application
+    * Pure HTML, CSS, JS (static site generation)
+    * Server sided rendering
+
+* Single page application (SPA)
+    * All happens in the client through JS, HTML, CSS
+    * GET/POST JSON using Fetch
+    * Dynamic update DOM
+
+<p class="footnote">Classical versus the "client side" approach.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# SPA architecture
+
+* Moves logic from the server to the client
+* Architectural shift
+    * Moving from server code to client code
+    * Server code shifts in focus
+    * This ultimately reduces overall complexity of the system?
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# SPA with stateful server
+
+* Server keeps state in memory of the client state
+* Client is "stateless" (almost)
+* Server sends changes to bring client to new state
+* State in server is updated
+* Most logic executed on the server
+* HTML usually rendered on server
+
+<p class="footnote">Issues like "saving state on the server requires more resources?".</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# SPA with stateless server
+
+* Client keeps its own state
+* Client sends data representing its current state to the server
+* Server is able to reconstruct the client state
+* Returns data to the client to bring it to a new state
+    * Modifying the page DOM tree
+
+<p class="footnote">Issues like "more data sent to server?" and more "easily scalable?".</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# SPA as frontend to REST
+
+* Backend is pure webservice or REST API
+* Client is a pure frontend application
+    * Has its own state
+    * Can work without the server
+    * Communicates using Fetch & JSON
+    * Asks for resources
+    * Renders GUI from JSON data clientside
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# SPA challenges
+
+* Browser history
+* Search-engine optimization
+* Analytics
+* Speeding up the page load
+* Client/server code partitioning
+* New types of web based applications
+
+<p class="footnote">Advantage having JavaScript both on client and server, isomorphic (Universal) JavaScript.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# More application types
+
+* Cross platform desktop applications (Windows, Mac, Linux)
+    * Electron (vscode)
+
+* Progressive Web Apps (PWA)
+    * Focus on handheld to supply a native feeling
+
+* Compile to native handheld
+    * Apache Cordova 
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# Web API
+## Helpful to build SPA applications
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Web API
+
+* Fetch API (Ajax)
+* Web Storage API
+* Online/Offline
+* WebSocket API
+* Server-sent events
+* Service workers
+
+<p class="footnote">HTML5 introduced several useful features to build (new types of) applications using web technologies.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Online/Offline
+
+* Detect if the application (device) is online or offline
+* Events for
+    * `online`
+    * `offline`
+
+<p class="footnote">https://developer.mozilla.org/en-US/docs/Web/API/Window/online_event<br>https://developer.mozilla.org/en-US/docs/Web/API/Window/offline_event</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Online/Offline...
+
+```
+window.addEventListener('online', (event) => {
+    console.log("You are now connected to the network.")
+})
+
+window.addEventListener('offline', (event) => {
+    console.log("The network connection has been lost.")
+})
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# WebSocket API
+
+* Bi-directional realtime socket communication between client and server
+* Using HTTP protocol and upgrades to websockets
+* ws and wss
+* Object for `new WebSocket()`
+* Events for
+    * `open`
+    * `message`
+    * `close`
+
+<p class="footnote">https://developer.mozilla.org/en-US/docs/Web/API/WebSocket</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# WebSocket API...
+
+```
+const websocket = new WebSocket(url, subprotocol)
+
+websocket.onopen = () => {}
+websocket.onmessage = (event) => { event.data }
+websocket.onclose = () => {}
+```
+
+```
+websocket.send(message)
+```
+
+<p class="footnote">Text based messages, use JSON to implement more advanced application messages.</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Server-sent events
+
+* Server can send information to the browser
+* The events contain data that can be manipulated in the client
+* Used in a Web Workers only
+* Events for
+    * `open`
+    * `message`
+    * and custom named events
+
+<p class="footnote">https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Server-sent events...
+
+```
+const sse = new EventSource('/api/v1/sse');
+
+sse.addEventListener("notice", (e) => {
+    console.log(e.data)
+})
+
+sse.addEventListener("update", (e) => {
+    console.log(e.data)
+})
+
+// Capture both named and unnamed events
+sse.addEventListener("message", (e) => {
+    console.log(e.data)
+});
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Web workers
+
+* Run a script in a background thread
+* Separate from the main thread
+* Heavy processing in separate thread
+* Allowing main to run without being blocked/slowed down
+* Data is sent between workers and the main using `postMessage()` and onmessage event handler
+
+<p class="footnote">https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API</p>
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Web workers...
+
+* Workers can create new worker threads
+* Types of workers
+    * Dedicated - single script
+    * Shared - utilized by multiple scripts running in different windows
+    * Service - proxy servers that sit between web applications, the browser, and the network
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Web workers...
+
+```
+// Main thread
+const myWorker = new Worker('worker.js');
+
+first.onchange = () => {
+    myWorker.postMessage([first.value, second.value]);
+    console.log('Message posted to worker');
+}
+```
+
+```
+// In worker.js
+onmessage = (e) => {
+    console.log('Message received from main script');
+    const workerResult = `Result: ${e.data[0] * e.data[1]}`;
+    console.log('Posting message back to main script');
+    postMessage(workerResult);
+}
+```
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Web workers...
+
+```
+// Back in main, listen to messages from worker
+myWorker.onmessage = (e) => {
+    result.textContent = e.data;
+    console.log('Message received from worker');
+}
+```
+
+* Can not access the DOM
+* Can not use the window object
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Future of SPA
+
+* Mix SPA with serverside techniques
+    * For browser app/websites
+
+* Pure SPA with offline features looking like a native app
+    * Installable on handhelds
+
+* Or?
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+# Summary
+
+* SPA as an application architecture
+* Pros and cons
+* Related techniques to build webapps
+* HTML API
+    * Fetch
+    * Web storage, Online/Offline
+    * WebSockets, Server-sent events, Web workers
+
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown class="titlepage center">
+# The end
+</script>
+
+
+
+<script data-role="slide" type="text/html" data-markdown>
+</script>
+
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Events</title>
+        <link rel="icon" href="img/glider.png">
+        <style>
+            .container {
+                display: flex;
+                gap: 8px;
+            }
+            .tile {
+                width: 48px;
+                height: 48px;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <h1>Events</h1>
+            
+            <p>
+                <button id="colorButton">Change color</button>
+            </p>
+
+            <form>
+                <input type="text" name="textField">
+                <input type="submit" name="doit" value="Submit"> 
+            </form>
+
+            <div class="outer">
+                <div class="inner">
+                    <p id="content">The content</p>
+                </div>   
+            </div>
+
+            <div class="container">
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+                <div class="tile"></div>
+            </div>
+
+            <p>
+                <meter min="0" max="100" low="25" high="75" value="0"></meter>
+                <button id="start">Start timer</button>
+            </p>
+        </main>
+    </body>
+
+    <script type="module" src="js/main.js"></script>
+</html>

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="sv">
+	<head>
+		<title>forms!</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+	<header>
+		<hgroup>
+			<h1 id="html4">HTML form elements</h1>
+			<h2>Common elements in a HTML form.</h2>
+		</hgroup>
+	</header>
+	<section>
+		<form>
+			<table>
+				<tr>
+					<td><code>&lt;input type=text value=text&gt;</code></td>
+					<td><input type="text" value="text"></td>
+					<td>Text input field.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=password value=password&gt;</code></td>
+					<td><input type="password" value="password"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=submit value=send&gt;</code></td>
+					<td><input type="submit" value="send"></td>
+					<td>Submit button to send the form.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;button type=submit&gt;send&lt;/button&gt;</code></td>
+					<td><button type="submit">send</button></td>
+					<td>Another type of button.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=checkbox checked&gt;<br>&lt;input type=checkbox&gt;</code></td>
+					<td><input type="checkbox" checked><br><input type="checkbox"></td>
+					<td>Check many options.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=radio name=radio1 checked&gt;<br>&lt;input type=radio name=radio1&gt;</code></td>
+					<td><input type="radio" name="radio1" checked><input type="radio" name="radio1"></td>
+					<td>Check only one option.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=file&gt;</code></td>
+					<td><input type="file"></td>
+					<td>Choose a file and upload it to the webserver.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=image alt=submit&gt;</code></td>
+					<td><input type="image" src="logo.png" alt="submit"></td>
+					<td> A image as a submit button.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=reset value=reset&gt;</code></td>
+					<td><input type="reset" value="reset"></td>
+					<td>Retore the form to its original content.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=button value=button&gt;</code></td>
+					<td><input type="button" value="button"></td>
+					<td>A button, use it to connect to its click event.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=hidden value=invisible&gt;</code></td>
+					<td><input type="hidden" value="invisible"></td>
+					<td>Hidden data, not visible but sent as part of the form.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;select name=select&gt;<br>&lt;option value=ett&gt;ett<br>&lt;option value=två&gt;två<br>&lt;select&gt;</code></td>
+					<td><select name="select"><option value="ett">ett</option><option value="två">två</option></select></td>
+					<td>A drop-down list where you can choose the value.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;select multiple name=select&gt;<br>&lt;option value=ett&gt;ett<br>&lt;option value=två&gt;två<br>&lt;select&gt;</code></td>
+					<td><select multiple name="select"><option value="ett">ett</option><option value="två">två</option></select></td>
+					<td>A list where you can select multiple values.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textarea&gt;&lt;/textarea&gt;</code></td>
+					<td><textarea></textarea></td>
+					<td>To display or enter a text section.</td>
+				</tr>
+			</table>
+		</form>
+	</section>
+	<header>
+		<hgroup>
+			<h1 id="html5">html5 forms</h1>
+			<h2>Some new elements within html5</h2>
+		</hgroup>
+	</header>
+	<section>
+		<form>
+			<table>
+				<tr>
+					<td><code>&lt;input type=text placeholder=text&gt;</code></td>
+					<td><input type="text" placeholder="text"></td>
+					<td>Text visible in the field as a guidance.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=text list=kurs&gt;<br>
+						&lt;datalist id=kurs&gt;<br>
+						&lt;option value=Mumintrollet&gt;<br>
+						&lt;option value=Muminpappan&gt;<br>
+						&lt;option value=Muminmamman&gt;<br>
+						&lt;option value=Snorkfröken&gt;<br>
+						&lt;/datalist&gt;</code>
+					</td>
+					<td><input type="text" list="kurs">
+						<datalist id="kurs">
+							<option value="Mumintrollet"></option>
+							<option value="Muminpappan"></option>
+							<option value="Muminmamman"></option>
+							<option value="Snorkfröken"></option>
+						</datalist>
+					</td>
+					<td>Input with autocomplete from a defined list.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=text autofocus&gt;</code></td>
+					<td><input type="text" autofocus></td>
+					<td>Give the field autofocus.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=color&gt;</code></td>
+					<td><input type="color"></td>
+					<td>Pick a color.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=date&gt;</code></td>
+					<td><input type="date"></td>
+					<td>Pick a date, or datetime, time, week, month, year.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=number min=0 max=100&gt;</code></td>
+					<td><input type="number" min="0" max="100"></td>
+					<td>Number with max and min values.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=range step=5 min=0 max=100 name=range1&gt;</code></td>
+					<td><input type="range" step="5" min="0" max="100" name="range1"></td>
+					<td>A slide to choose a value.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;output onforminput=&quot;value=range1.value&quot;&gt;&lt;/output&gt;</code></td>
+					<td><output onforminput="value=range1.value"></output></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><code>&lt;progress value=50 max=100&gt;50&lt;/progress&gt;</code></td>
+					<td><progress value="50" max="100">50</progress></td>
+					<td>A progress-bar to show what happens.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;meter value=80 max=100 min=0&gt;80&lt;/meter&gt;</code></td>
+					<td><meter value="80" max="100" min="0">80</meter></td>
+					<td>LIke progress but for known intervalls.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=search&gt;</code></td>
+					<td><input type="search"></td>
+					<td>Search field.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=tel&gt;</code></td>
+					<td><input type="tel"></td>
+					<td>Phone number..</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=email&gt;</code></td>
+					<td><input type="email"></td>
+					<td>Email address.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input type=url&gt;</code></td>
+					<td><input type="url"></td>
+					<td>Eneter an url.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;input multiple type=file&gt;</code></td>
+					<td><input multiple type="file"></td>
+					<td>Multiple files for upload ti the webserver.</td>
+				</tr>
+			</table>
+		</form>
+	</section>
+	<header>
+		<hgroup>
+			<h1>html5 forms validation</h1>
+			<h2>Validate the fields before submission</h2>
+		</hgroup>
+	</header>
+	<section>
+		<form>
+			<table>
+				<tr>
+					<td><code>&lt;input pattern=&quot;[a-z]{4}[0-9]{2}&quot; name=akronym title=&quot;En students akronym består av fyra bokstäver följt av två siffror.&quot;&gt;</code></td>
+					<td><input pattern="[a-z]{4}[0-9]{2}" name="akronym" title="a student acronym consists of fyra characters followed by two digits."></td>
+					<td>Must contain fyra characters followed by two digits.</td>
+				</tr>
+			</table>
+		</form>
+	</section>
+	<footer>
+		<p><a href="http://validator.w3.org/check/referer">html5</a></p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<h1>Welcome</h1>
+
+{{#if flash}}
+<p style="padding: 1em; background-color: #ccf">{{ flash }}</p>
+{{/if}}
+
+<p>This site has protected and public pages. You need to login to access the protected pages.</p>
+
+<ul>
+    <li><a href="/login">This public welcome page</a></li>
+    <li><a href="/login/login">Login</a></li>
+    <li><a href="/login/logout">Logout</a></li>
+    <li><a href="/login/protected">Only for authenticated users</a></li>
+    <li><a href="/login/profile/doe">Only for authenticated user "doe"</a></li>
+</ul>
+
+{{#if user}}
+<p>You ARE authenticated as <b>{{user}}</b> and you can now review your <a href="/login/profile/{{ user }}">personal profile</a>.</p>
+{{/if}}
+
+{{#unless user}}
+<p>You are NOT authenticated and you can NOT see the protected pages.</p>
+{{/unless}}
+
+<p>The session contains:</p>
+<pre>{{ session }}</pre>

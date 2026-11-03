@@ -1,0 +1,21 @@
+<!doctype html>
+
+<meta charset="utf8">
+<style>
+    body {
+        overflow-y: scroll;    /* Always display scrollbar, avoid hopping pages */
+    }
+</style>
+
+<h1>Always show scrollbar</h1>
+
+<p>When you have pages of different lengths, you can sometimes get an effect of the web page jumping due to the right scroll bar being alternately shown and hidden. It happens when one page is longer than the total height of the browser and the next page is shorter than the height of the page.</p>
+
+<p>It's always an annoying thing that's easy to fix by telling the browser, via CSS, to always show the scrollbar, regardless of page height.</p>
+
+<pre>
+html {
+    overflow-y: scroll;
+}
+</pre>
+

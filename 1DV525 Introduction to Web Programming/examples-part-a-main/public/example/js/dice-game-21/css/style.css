@@ -1,0 +1,10 @@
+/**
+ * The stylesheet
+ */
+.hidden {
+  display: none;
+}
+
+.dice {
+  font-size: 32px;
+}

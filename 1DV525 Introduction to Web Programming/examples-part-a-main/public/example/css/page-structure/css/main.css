@@ -1,0 +1,41 @@
+main {
+  margin: 0 auto; /* Make the div center */
+
+  /* max-width: 700px; */
+  color: lime;
+  background-color: #333;
+  padding: 1em; /* em is a size related to the current base font */
+
+  padding-bottom: 2em;
+
+  overflow: auto;
+}
+
+h1 {
+  border-bottom: 4px double lime;
+}
+
+.rounded {
+  border-radius: 20%;
+}
+
+a {
+  color: lime;
+}
+
+a:hover {
+  color: white;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+figcaption {
+  padding-top: 0.3em;
+  font-style: italic;
+}

@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8" />
+<title>Introduction to web programming</title>
+
+<!-- Mithril HTML Slideshow styles -->
+<link href="css/mithril-slideshow.css" rel="stylesheet" />
+
+<!-- Code formatting using highlight.js -->
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/tomorrow.css">
+<script src="js/highlight.pack.js"></script>
+
+<!-- Text formatting using Markdown through showdown.js -->
+<script src="js/showdown.min.js"></script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Introduction to web programming
+## JavaScript DOM
+### Mikael Roos
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Agenda
+
+* Assignment A02
+* Linters, transpilers, minifiers
+* Code structure vanilla JavaScript
+* Code constructs
+* Browser with API, DOM, Events
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Assignment A02
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Code standard linters
+
+* [JavaScript Standard Style](https://standardjs.com/)
+* [eslint](https://eslint.org/)
+* htmlhint
+* stylelint
+* jsonlint
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Compile or transpile
+
+* LESS to css (review example)
+* SASS to css
+* TypeScript
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Minify
+
+* html-minifier
+* clean-css-cli
+* uglify-es
+
+</script>
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Example minification
+
+```
+$ npx html-minifier -c .html-minifier.conf web/javascript-core/basics/index.html
+$ npx clean-css-cli web/javascript-core/pushing-the-ball/style.css
+$ npx uglify-es web/javascript-core/basics/main.js
+```
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Create an environment around your code
+
+* Linters
+* Transpilers
+* Minifiers
+* Script execution
+    * `npm run test` `npm run build`
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# How to write beautiful JavaScript code?
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Code by structure
+
+* Object as a container for props and methods
+* The object prototype model
+* The module pattern
+* Review the Asteroid example code
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Code constructs, nice to know of
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Code constructs
+
+* Hoisting
+* Declare variabels with let/const
+* Scope
+* Closure
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Hoisting
+
+* Lets review an example program on hoisting and var
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Variable declaration
+
+* Block and/or function scope
+* let
+* const
+
+* Lets review an example program
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Scope
+
+* Functions scope
+* Block scope
+
+* Think of how the variable example worked
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Closure
+
+* A function executing will keep its living scope until it is dead.
+* We call this closure
+    * Its a base for the module pattern
+
+* Lets review an example program
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Code in the browser
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Browser
+
+* API
+* DOM
+* Events
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# API
+
+* [Web API](https://developer.mozilla.org/en-US/docs/Web/API)
+* Consider desktop, tablet, mobile environment for the browser
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# DOM terminology
+
+* Document
+* Node
+* NodeList
+* Element
+* Attribute
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# DOM
+
+* Browser has Window object, representing the browser environment in the global variable `window`
+* The current `window` has a property `document` containing all nodes of the current document.
+* The variable `document` is also available as a global one.
+* Through `document` all parts of the document nodes/elements can be accessed.
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# DOM usage
+
+```
+a = document.getElementsByTagName("body")
+a // inspect a
+a[0].innerHTML = "A"
+a[0].style // Read only property
+a[0].style.backgroundColor = "blue"
+a[0].style.color = "white"
+```
+
+</script>
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Events
+
+* [Events](https://developer.mozilla.org/en-US/docs/Web/Events)
+    * Mouse, key, timer, document load
+* Add callback for event on a element, an eventhandler
+* Event bubbles up
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Events
+
+```
+b = document.getElementsByTagName("body")
+
+function handleClick() { console.log("hej")}
+
+b[0].addEventListener("click", handleClick)
+```
+
+* Lets review som sample programs and see how they use events
+
+</script>
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Last words
+
+* Questions on that?
+
+</script>
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+</script>
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# ES6 class
+
+* The Asteroid example
+
+</script>
+
+
+<script data-role="slide" data-markdown type="text/html">
+# ES modules
+
+*
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# A builder
+
+* Snowpack
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Unittesting
+
+* chai
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Travis
+
+*
+
+</script>
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Code quality
+
+*
+
+</script>
+
+
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Object method/property
+<pre data-code="c6"></pre>
+</script>
+
+<script id="c6" data-role="code" data-language="javascript" type="text/html">
+myBall.move = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Object this
+<pre data-code="c7"></pre>
+</script>
+
+<script id="c7" data-role="code" data-language="javascript" type="text/html">
+/* Draw element in HTML using access to this */
+myBall.HTMLelement = document.getElementById('ball');
+
+myBall.draw = function () {
+    this.HTMLelement.style.backgroundImage = 'url(' + this.image + ')';
+    this.HTMLelement.style.top = this.position.y + 'px';
+    this.HTMLelement.style.left = this.position.x + 'px';
+    console.log('Drawing ball.');
+}
+
+myBall.draw();
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Object this, event
+<pre data-code="c71"></pre>
+</script>
+
+<script id="c71" data-role="code" data-language="javascript" type="text/html">
+/* This is the HTML element, not myBall */
+myBall.HTMLelement.addEventListener('click', function (event) {
+    console.log('Clicked on: ' + event.clientX + ' x ' + event.clientY);
+    console.log(this);
+});
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Last words
+
+* Questions on that?
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+</script>
+
+
+
+<!-- include essential js-script -->
+<script src="js/mithril.min.js"></script>
+<script src="js/mithril-slideshow.js"></script>

@@ -1,0 +1,54 @@
+<!doctype html>
+
+<meta charset="utf8">
+<style>
+    main {
+        margin: 0 auto;
+        max-width: 600px;
+    }
+
+    fieldset {
+        display: inline-block;
+    }
+
+</style>
+
+<main>
+<h1>A HTML GET form</h1>
+
+<p>This form is a "self-submitting" form and it uses the method GET to submit the form through the querystring.</p>
+
+<p>Changing the method to POST would send the form data through the HTTP body, instead of the querystring.</p>
+
+<p>To make it fully work you need code on the webserver to take care of the submitted form, or use JavaScript in the browser to capture the submit event.</p>
+
+<form method="get" action="page.html">
+    <fieldset>
+
+        <legend>Choose your favorite monster</legend>
+
+        <input type="radio" id="kraken" name="monster">
+        <label for="kraken">Kraken</label><br/>
+
+        <input type="radio" id="sasquatch" name="monster">
+        <label for="sasquatch">Sasquatch</label><br/>
+
+        <input type="radio" id="mothman" name="monster">
+        <label for="mothman">Mothman</label>
+
+        <p>
+            <label>Another one:
+                <input type="text" name="custom" placeholder="Write you own monster">
+            </label>
+        </p>
+
+        <p>
+            <input type="submit" value="Send it">
+            <input type="reset" value="Cancel">
+        </p>
+
+    </fieldset>
+</form>
+
+<p><a href="page.html">Go to the page to reset the query string</a>, this is how it looks like when first entering this page.</p>
+</main>

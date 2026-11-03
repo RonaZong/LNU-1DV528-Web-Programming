@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>Roll dices</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="img/glider.png">
+</head>
+<body>
+    <h1>Dice game 21</h1>
+    <p>Play a round of 21 toward the computer. You start, try to reach as close to 21 as possible, but not more.</p>
+    <button id="start">Start/restart the game</button>
+
+    <div id="player" class="hidden">
+        <h2>Player <span id="player-win" class="player-win">WINNER!</span></h2>
+        <p><span id="player-sum"></span> <span id="player-rolls"></span></p>
+        <button id="roll">Roll a dice</button>
+        <button id="stop">Stop</button>
+    </div>
+    <div id="computer" class="hidden">
+        <h2>Computer <span id="computer-win" class="computer-win">WINNER!</span></h2>
+        <p><span id="computer-sum"></span> <span id="computer-rolls"></span></p>
+        <button id="computer-roll">Let me roll them...</button>
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<h1>SQL injection</h1>
+
+<p>Can you inject some SQL into this script?</p>
+
+<form>
+    <input type="search" name="search" value="{{ search }}">
+    <input type="submit" name="doit" value="Search">
+</form>
+
+{{#if res}}
+  <pre>{{res}}</pre>
+{{/if}}

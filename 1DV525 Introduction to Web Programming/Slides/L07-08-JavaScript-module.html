@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8" />
+<title>Introduction to web programming</title>
+
+<!-- Mithril HTML Slideshow styles -->
+<link href="css/mithril-slideshow.css" rel="stylesheet" />
+
+<!-- Code formatting using highlight.js -->
+<link rel="stylesheet" href="css/default.css">
+<link rel="stylesheet" href="css/tomorrow.css">
+<script src="js/highlight.pack.js"></script>
+
+<!-- Text formatting using Markdown through showdown.js -->
+<script src="js/showdown.min.js"></script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Introduction to web programming
+## JavaScript
+### Mikael Roos
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Agenda
+
+* Assignment A02, part 2
+* Builder
+* ES modules, ES6 classes
+* Fetch API
+* JSON
+* Asynchronous programming
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Assignment A02, part 2
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# [Snowpack](https://www.snowpack.dev/)
+
+* How does it work?
+* Create, build and run project from a template
+* Review example in the example repo
+
+```
+npx create-snowpack-app snowpack --template @snowpack/app-template-blank
+```
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# ES Modules
+
+* Ch 24 Modules (in Axel's book)
+* Various types of modules
+* import and export
+
+* Review example in the example repo
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Classes
+
+* Classic object orientation
+* Class, constructor, properties, methods, getters
+* Extends
+
+* Review example in the example repo
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Asteroids example
+
+* Classic object orientation
+* Class, constructor, properties, methods, getters
+* Extends
+
+* Review example
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Fetch API
+
+* Enhanced XMLHttpRequest (jQuery.ajax())
+* Asynchronous request
+* Request and Response
+* CORS Cross-Origin Resource Sharing, HTTP Origin
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# JSON
+
+* JavaScript Object Notation
+* A data interchange format sprung from JavaScript
+* object, array, string, number, "true", "false", "null"
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# JSON
+
+* Global Object
+    * Stringify
+    * Parse
+* Do an example in the console to convert between JSON and JavaScript
+
+</script>
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Asynchronous programming
+
+* Eventloop
+* Eventhandlers
+* do.then.catch
+* async await
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# REST server
+
+* A sample REST server for development
+    * https://rem.dbwebb.se/
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# REST Client
+
+* See how a REST client is used
+
+* Work towards the REM server and the Quiz server
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Fetch
+
+* Review example
+    * do.then.catch using the REM server
+    * async await using the Quiz server
+
+</script>
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Last words
+
+* Questions on that?
+
+</script>
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+</script>
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Caching
+
+* Store the data locally and avoid to unneeded requests to the server
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Unittesting
+
+* chai
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Travis
+
+*
+
+</script>
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Code quality
+
+*
+
+</script>
+
+
+
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Object method/property
+<pre data-code="c6"></pre>
+</script>
+
+<script id="c6" data-role="code" data-language="javascript" type="text/html">
+myBall.move = function(x, y) {
+    this.x = x;
+    this.y = y;
+};
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Object this
+<pre data-code="c7"></pre>
+</script>
+
+<script id="c7" data-role="code" data-language="javascript" type="text/html">
+/* Draw element in HTML using access to this */
+myBall.HTMLelement = document.getElementById('ball');
+
+myBall.draw = function () {
+    this.HTMLelement.style.backgroundImage = 'url(' + this.image + ')';
+    this.HTMLelement.style.top = this.position.y + 'px';
+    this.HTMLelement.style.left = this.position.x + 'px';
+    console.log('Drawing ball.');
+}
+
+myBall.draw();
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Object this, event
+<pre data-code="c71"></pre>
+</script>
+
+<script id="c71" data-role="code" data-language="javascript" type="text/html">
+/* This is the HTML element, not myBall */
+myBall.HTMLelement.addEventListener('click', function (event) {
+    console.log('Clicked on: ' + event.clientX + ' x ' + event.clientY);
+    console.log(this);
+});
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+# Last words
+
+* Questions on that?
+
+</script>
+
+
+
+<script data-role="slide" data-markdown type="text/html">
+</script>
+
+
+
+<!-- include essential js-script -->
+<script src="js/mithril.min.js"></script>
+<script src="js/mithril-slideshow.js"></script>
