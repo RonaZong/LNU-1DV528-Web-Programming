@@ -16,6 +16,7 @@
           <div class="actions">
             <a href="/snippets/<%= snippet.id %>/edit">Edit</a>
             <form action="/snippets/<%= snippet.id %>/delete" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <button type="submit">Delete</button>
             </form>
           </div>

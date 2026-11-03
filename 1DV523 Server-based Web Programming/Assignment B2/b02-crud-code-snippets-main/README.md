@@ -79,6 +79,8 @@ npm run eslint:fix
 - Server-side ownership checks
 - Flash messages
 - 403, 404 and 500 error views
+- Session-bound CSRF tokens for all POST forms
+- POST-only logout
 
 Sessions are stored in memory, so restarting the application logs users out.
 Accounts and snippets remain stored in MongoDB.
@@ -103,6 +105,9 @@ The following checks were performed during development:
 - Rejection of another user's edit and delete requests
 - Invalid and nonexistent snippet IDs
 - Unknown page handling
+- Missing and invalid CSRF tokens are rejected
+- Cross-account updates and deletions are rejected with a valid CSRF token
+- Database unavailability displays a 500 page; service recovers after MongoDB restarts
 
 ESLint passed. Following the EJS upgrade, `npm audit --omit=dev`
 reported zero known vulnerabilities at the time of checking.

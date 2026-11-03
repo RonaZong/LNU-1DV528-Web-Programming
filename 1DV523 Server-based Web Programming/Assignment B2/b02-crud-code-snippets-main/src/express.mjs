@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url'
 
 import authRoutes from './routes/authRoutes.mjs'
 import snippetRoutes from './routes/snippetRoutes.mjs'
+import { csrfProtection } from './middleware/csrfMiddleware.mjs'
 
 const projectRoot = new URL('../', import.meta.url)
 dotenv.config({ path: fileURLToPath(new URL('.env', projectRoot)) })
@@ -29,6 +30,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
+      httpOnly: true,
+      sameSite: 'lax',
       secure: process.env.NODE_ENV === 'production',
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
@@ -52,6 +55,8 @@ app.use((req, res, next) => {
   console.log(`Received request: ${req.method} ${req.url}`)
   next()
 })
+
+app.use(csrfProtection)
 
 // Routes
 app.use('/auth', authRoutes)

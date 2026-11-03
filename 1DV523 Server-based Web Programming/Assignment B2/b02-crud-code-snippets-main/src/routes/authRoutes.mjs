@@ -13,6 +13,6 @@ router.get('/login', showLogin)
 router.post('/login', login)
 router.get('/register', showRegister)
 router.post('/register', register)
-router.get('/logout', logout)
+router.post('/logout', logout)
 
 export default router
