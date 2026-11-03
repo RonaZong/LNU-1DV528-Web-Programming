@@ -2,8 +2,35 @@
 
 <h2>All Code Snippets</h2>
 
+<form action="/snippets" method="GET">
+  <div>
+    <label for="filter-tag">Tag:</label>
+    <input
+      type="text"
+      id="filter-tag"
+      name="tag"
+      value="<%= filters.tag %>"
+      placeholder="javascript"
+    >
+  </div>
+
+  <div>
+    <label for="filter-author">Author username:</label>
+    <input
+      type="text"
+      id="filter-author"
+      name="author"
+      value="<%= filters.author %>"
+      placeholder="testuser1"
+    >
+  </div>
+
+  <button type="submit">Filter</button>
+  <a href="/snippets">Clear filters</a>
+</form>
+
 <% if (snippets.length === 0) { %>
-  <p>No snippets found. Create one!</p>
+  <p>No snippets found.</p>
 <% } else { %>
   <ul>
     <% snippets.forEach(snippet => { %>
@@ -11,7 +38,11 @@
         <h3><%= snippet.title %></h3>
         <pre><code><%= snippet.code %></code></pre>
         <p>By: <%= snippet.user.username %></p>
-        
+
+        <% if (snippet.tags && snippet.tags.length > 0) { %>
+          <p>Tags: <%= snippet.tags.join(', ') %></p>
+        <% } %>
+
         <% if (locals.userId && locals.userId === String(snippet.user._id)) { %>
           <div class="actions">
             <a href="/snippets/<%= snippet.id %>/edit">Edit</a>

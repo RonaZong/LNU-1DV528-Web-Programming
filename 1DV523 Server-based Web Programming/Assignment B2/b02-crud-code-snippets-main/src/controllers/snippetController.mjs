@@ -1,9 +1,47 @@
 import Snippet from '../models/Snippet.mjs'
+import User from '../models/User.mjs'
+
+const parseTags = (value) => {
+  if (typeof value !== 'string') return []
+
+  return [...new Set(
+    value.split(',')
+      .map(tag => tag.trim().toLowerCase())
+      .filter(tag => tag.length > 0)
+  )]
+}
 
 export const listSnippets = async (req, res, next) => {
   try {
-    const snippets = await Snippet.find().populate('user')
-    res.render('index', { snippets })
+    const tag = typeof req.query.tag === 'string'
+      ? req.query.tag.trim().toLowerCase()
+      : ''
+
+    const author = typeof req.query.author === 'string'
+      ? req.query.author.trim()
+      : ''
+
+    const filter = {}
+
+    if (tag) {
+      filter.tags = tag
+    }
+
+    if (author) {
+      const user = await User.findOne({ username: author })
+
+      if (!user) {
+        return res.render('index', {
+          snippets: [],
+          filters: { tag, author }
+        })
+      }
+
+      filter.user = user._id
+    }
+
+    const snippets = await Snippet.find(filter).populate('user').sort({ createdAt: -1 })
+    res.render('index', { snippets, filters: { tag, author } })
   } catch (err) {
     next(err)
   }
@@ -23,6 +61,7 @@ export const createSnippet = async (req, res, next) => {
     const snippet = new Snippet({
       title,
       code,
+      tags: parseTags(req.body.tags),
       user: req.session.userId
     })
     await snippet.save()
@@ -52,7 +91,7 @@ export const updateSnippet = async (req, res, next) => {
       return res.redirect(`/snippets/${req.params.id}/edit`)
     }
 
-    await Snippet.findByIdAndUpdate(req.params.id, { title, code }, { runValidators: true })
+    await Snippet.findByIdAndUpdate(req.params.id, { title, code, tags: parseTags(req.body.tags) }, { runValidators: true })
     req.flash('success', 'Snippet updated successfully')
     res.redirect('/snippets')
   } catch (err) {

@@ -13,6 +13,16 @@
     <label for="code">Code:</label>
     <textarea id="code" name="code" rows="10" required><%= snippet.code %></textarea>
   </div>
+
+  <div>
+    <label for="tags">Tags (comma-separated, optional):</label>
+    <input
+      type="text"
+      id="tags"
+      name="tags"
+      value="<%= (snippet.tags || []).join(', ') %>"
+    >
+  </div>
   
   <button type="submit">Update Snippet</button>
 </form>
