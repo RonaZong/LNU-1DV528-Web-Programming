@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    browser: true,
+    browser: false,
     es2021: true,
     node: true
   },
@@ -23,6 +23,7 @@ module.exports = {
     'build/',
     'doc/',
     'dist/',
-    'node_modules/'
+    'node_modules/',
+    '.npm-cache/'
   ]
 }
