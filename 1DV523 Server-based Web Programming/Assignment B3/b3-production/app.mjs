@@ -1,22 +1,18 @@
-/**
- * Main Application
- *
- */
+import 'dotenv/config';
 import app from "./src/express.mjs";
 
-app();
+const PORT = process.env.PORT || 3000;
 
-require("dotenv").config();
+app.listen(PORT, '127.0.0.1', () => {
+  console.log(`Server is running on http://127.0.0.1:${PORT}`);
+});
+
 const WebSocket = require("ws");
 const { verifyGitLabWebhook } = require("./src/utils/auth");
 const apiRoutes = require("./src/routes/api");
 const webhookRoutes = require("./src/routes/webhooks");
 const viewRoutes = require("./src/routes/views");
 
-import express from "express";
-
-const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");

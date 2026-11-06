@@ -1,5 +1,5 @@
 {
-  "name": "web-scraper",
+  "name": "b1-web-scraper",
   "version": "1.0.0",
   "description": "This project is a web scraper that automates the workflow of finding a common free day for three friends, checking available movies, and booking a table at their favorite restaurant.",
   "main": "index.mjs",

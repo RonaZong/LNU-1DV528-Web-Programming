@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+app.get("/", (req, res) => {
+  res.send('B3 server is running');
+});
+
 app.post("/webhook", (req, res) => {
   const token = req.headers["x-gitlab-token"];
   if (token !== process.env.WEBHOOK_SECRET) {
@@ -87,3 +91,5 @@ app.post("/webhook", (req, res) => {
   }
   res.send("OK");
 });
+
+export default app;

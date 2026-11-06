@@ -1,21 +1,35 @@
 {
-  "name": "production",
+  "name": "b3-production",
   "version": "1.0.0",
   "description": "This project implements a Node.js application that integrates with GitLab Webhooks. It listens for issue-related events and provides real-time updates to connected clients via WebSockets. The application also fetches and displays a list of issues from a GitLab repository.",
-  "main": "index.js",
+  "main": "app.mjs",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node app.js",
-    "start:dev": "NODE_ENV=development node app.js"
+    "start": "node app.mjs",
+    "dev": "node --watch app.mjs",
+    "start:dev": "npm run dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "npm run lint"
+  },
+  "private": true,
+  "engines": {
+    "node": "24.x"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^1.9.0",
-    "dotenv": "^16.5.0",
-    "express": "^4.21.2",
-    "helmet": "^8.1.0",
-    "socket.io": "^4.8.1"
+    "axios": "1.21.0",
+    "dotenv": "18.0.9",
+    "ejs": "7.0.2",
+    "express": "5.3.0",
+    "helmet": "8.3.0",
+    "morgan": "1.12.1",
+    "ws": "8.22.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "globals": "17.14.0"
   }
 }
